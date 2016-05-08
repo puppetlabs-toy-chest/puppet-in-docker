@@ -1,0 +1,6 @@
+---
+language: ruby
+sudo: false
+services: docker
+cache: bundler
+script: bundle exec rake
