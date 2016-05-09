@@ -32,13 +32,10 @@ def error(message)
 end
 
 def get_version_from_label(image)
-  # TODO first run problem, need to parse Dockerfile
-  begin
-    labels = JSON.parse(`docker inspect -f "{{json .Config.Labels }}" #{REPOSITORY}/#{image}`)
-    labels["#{NAMESPACE}.version"]
-  rescue JSON::ParserError
-    nil
-  end
+  labels = JSON.parse(`docker inspect -f "{{json .Config.Labels }}" #{REPOSITORY}/#{image}`)
+  labels["#{NAMESPACE}.version"]
+rescue JSON::ParserError
+  nil
 end
 
 images.each do |image|
