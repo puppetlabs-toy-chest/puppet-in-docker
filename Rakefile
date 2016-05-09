@@ -96,7 +96,9 @@ images.each do |image|
       file_name = "#{image}/Dockerfile"
       text = File.read(file_name)
       replacements.each do |key, value|
+        original = text.clone
         text = text.gsub(/#{key}=\"[a-z0-9A-Z\-:]*\"/, "#{key}=\"#{value}\"")
+        info "Updating #{key} in #{file_name}" unless original == text
       end
       File.open(file_name, 'w') { |file| file.puts text }
     end
