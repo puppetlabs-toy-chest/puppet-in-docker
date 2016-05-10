@@ -17,7 +17,8 @@ RUN apt-get update && \
 COPY puppetserver /etc/default/puppetserver
 COPY logback.xml /etc/puppetlabs/puppetserver/
 COPY request-logging.xml /etc/puppetlabs/puppetserver/
-COPY puppet.conf /etc/puppetlabs/puppet/
+
+RUN puppet config set autosign true --section master
 
 COPY Dockerfile /
 
