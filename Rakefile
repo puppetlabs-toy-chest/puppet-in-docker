@@ -1,15 +1,20 @@
 require 'mkmf'
 require 'time'
-require 'json'
 
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'colorize'
 
+require_relative 'lib/puppet/dockerfile'
+
+include Puppet::Dockerfile
+
 REPOSITORY = ENV['DOCKER_REPOSITORY'] || 'puppet'
 NO_CACHE = ENV['DOCKER_NO_CACHE'] || false
 TAG = ENV['DOCKER_IMAGE_TAG'] || 'latest'
 NAMESPACE = ENV['DOCKER_NAMESPACE'] || 'com.puppet'
+
+IMAGES = Dir.glob('*').select { |f| File.directory?(f) && File.exist?("#{f}/Dockerfile") }
 
 RuboCop::RakeTask.new
 
@@ -17,28 +22,7 @@ task :docker do
   raise 'These tasks require docker to be installed' unless find_executable 'docker'
 end
 
-images = Dir.glob('*').select { |f| File.directory?(f) && File.exist?("#{f}/Dockerfile") }
-
-def info(message)
-  puts "==> #{message}".colorize(:green)
-end
-
-def warn(message)
-  puts "==> #{message}".colorize(:yellow)
-end
-
-def error(message)
-  puts "==> #{message}".colorize(:red)
-end
-
-def get_version_from_label(image)
-  labels = JSON.parse(`docker inspect -f "{{json .Config.Labels }}" #{REPOSITORY}/#{image}`)
-  labels["#{NAMESPACE}.version"]
-rescue JSON::ParserError
-  nil
-end
-
-images.each do |image|
+IMAGES.each do |image|
   namespace image.to_sym do |_args|
     RSpec::Core::RakeTask.new(spec: [:docker]) do |t|
       t.pattern = "#{image}/spec/*_spec.rb"
@@ -104,7 +88,7 @@ end
 
 [:test, :lint, :build, :publish, :rev].each do |task_name|
   desc "Run #{task_name} for all images in repository in parallel"
-  multitask task_name => images.collect { |image| "#{image}:#{task_name}" }
+  multitask task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
 
 task default: [
