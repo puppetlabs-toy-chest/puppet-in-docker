@@ -1,0 +1,33 @@
+require 'mkmf'
+
+task :docker do
+  raise 'These tasks require docker to be installed' unless find_executable 'docker'
+end
+
+task network: :docker do
+  sh 'docker network create --driver bridge jenkins' unless system('docker network inspect jenkins')
+end
+
+namespace :jenkins do
+  desc 'Build a Jenkins image with the relevant plugins installed'
+  task build: :docker do
+    sh 'docker build -t puppet/jenkins .'
+  end
+
+  desc 'Start Jenkins in the background'
+  task start: [:network, 'jenkins:build'] do
+    unless system('docker inspect jenkinsserver')
+      sh 'docker run --name jenkinsserver --net jenkins -d -p 8080:8080 -p 50000:50000 puppet/jenkins'
+    end
+  end
+
+  desc 'Stop Jenkins if running'
+  task :stop do
+    sh 'docker rm -f jenkinsserver' if system('docker inspect jenkinsserver')
+  end
+end
+
+desc 'Run Jenkins Job Builder'
+task jjb: :'jenkins:start' do
+  sh 'docker run --interactive --tty --net jenkins --rm --volume "$PWD":/opt/jenkins-job --workdir /opt/jenkins-job jsallis/jenkins-job-builder jenkins-jobs --conf jenkins.ini update job.yml'
+end

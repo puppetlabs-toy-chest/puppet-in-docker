@@ -1,0 +1,19 @@
+---
+
+- job:
+    name: dockerfiles
+    description: 'Build, test and publish Docker images'
+    project-type: freestyle
+    scm:
+      - git:
+          name: origin
+          url: 'https://github.com:puppetlabs/dockerfiles.git'
+          skip-tag: true
+          branches:
+            - master
+    builders:
+      - shell: 'bundle install'
+      - shell: 'bundle exec rake'
+    triggers:
+      - pollscm:
+          cron: 'H/15 * * * *'
