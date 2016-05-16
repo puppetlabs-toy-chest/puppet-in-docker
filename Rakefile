@@ -30,13 +30,16 @@ task :list do
     sha = get_git_sha_from_label(name)
     sha = sha.yellow unless sha == current_git_sha
     {
-			name: name,
-			version: get_version_from_label(name),
-			from: get_from_from_dockerfile(name),
-			sha: sha,
-			build: get_buildtime_from_label(name),
-			maintainer: get_maintainer_from_dockerfile(name),
-		}.inject({}) { |h, (k, v)| h[k] = highlight_issues(v); h }
+      name: name,
+      version: get_version_from_label(name),
+      from: get_from_from_dockerfile(name),
+      sha: sha,
+      build: get_buildtime_from_label(name),
+      maintainer: get_maintainer_from_dockerfile(name)
+    }.each_with_object({}) do |(k, v), h|
+      h[k] = highlight_issues(v)
+      h
+    end
   end
   tp.set :max_width, 40
   tp images

@@ -35,7 +35,7 @@ describe 'Dockerfile' do
 
   describe 'Dockerfile#config' do
     it 'should expose the puppetserver port' do
-      expect(@image.json['ContainerConfig']['ExposedPorts']).to include("8140/tcp")
+      expect(@image.json['ContainerConfig']['ExposedPorts']).to include('8140/tcp')
     end
   end
 
@@ -46,20 +46,20 @@ describe 'Dockerfile' do
     end
 
     describe process('bash') do
-      its(:user) { should eq "root" }
+      its(:user) { should eq 'root' }
       its(:pid) { should eq 1 }
       its(:args) { should match(/foreground/) }
       it { should be_running }
     end
 
     describe process('java') do
-      its(:user) { should eq "puppet" }
+      its(:user) { should eq 'puppet' }
       it { should be_running }
     end
 
     after(:all) do
       @container.kill
-      @container.delete(:force => true)
+      @container.delete(force: true)
     end
   end
 end
