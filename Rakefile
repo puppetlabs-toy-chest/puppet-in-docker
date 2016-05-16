@@ -7,6 +7,7 @@ require 'colorize'
 require 'table_print'
 
 require_relative 'lib/puppet/dockerfile'
+require_relative 'lib/tableprint/formatters'
 
 include Puppet::Dockerfile
 
@@ -16,28 +17,6 @@ TAG = ENV['DOCKER_IMAGE_TAG'] || 'latest'
 NAMESPACE = ENV['DOCKER_NAMESPACE'] || 'com.puppet'
 
 IMAGES = Dir.glob('*').select { |f| File.directory?(f) && File.exist?("#{f}/Dockerfile") }
-
-# We monkey patch TablePrint to add support for passing output
-# coloured by colorize, to avoid the truncation that otherwise happens
-# due to the extra characters
-module TablePrint
-  class FixedWidthFormatter
-    def format(value)
-      padding = width - length(value.to_s)
-      truncate(value) + (padding < 0 ? '' : " " * padding)
-    end
-		private
-    def truncate(value)
-      return "" unless value
-      test = value.uncolorize.to_s
-      return value unless test.length > width
-      "#{value[0..width-4]}..."
-    end
-    def length(str)
-      str.uncolorize.length
-    end
-  end
-end
 
 RuboCop::RakeTask.new
 
