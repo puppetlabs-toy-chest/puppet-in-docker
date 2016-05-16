@@ -32,6 +32,6 @@ describe 'Dockerfile' do
   end
 
   describe user('postgres') do
-      it { should exist }
+    it { should exist }
   end
 end
