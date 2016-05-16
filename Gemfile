@@ -6,3 +6,4 @@ gem 'docker-api'
 gem 'colorize'
 gem 'rubocop', require: false
 gem 'guard-rake'
+gem 'table_print'

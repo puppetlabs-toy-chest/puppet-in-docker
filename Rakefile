@@ -4,6 +4,7 @@ require 'time'
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'colorize'
+require 'table_print'
 
 require_relative 'lib/puppet/dockerfile'
 
@@ -16,10 +17,50 @@ NAMESPACE = ENV['DOCKER_NAMESPACE'] || 'com.puppet'
 
 IMAGES = Dir.glob('*').select { |f| File.directory?(f) && File.exist?("#{f}/Dockerfile") }
 
+# We monkey patch TablePrint to add support for passing output
+# coloured by colorize, to avoid the truncation that otherwise happens
+# due to the extra characters
+module TablePrint
+  class FixedWidthFormatter
+    def format(value)
+      padding = width - length(value.to_s)
+      truncate(value) + (padding < 0 ? '' : " " * padding)
+    end
+		private
+    def truncate(value)
+      return "" unless value
+      test = value.uncolorize.to_s
+      return value unless test.length > width
+      "#{value[0..width-4]}..."
+    end
+    def length(str)
+      str.uncolorize.length
+    end
+  end
+end
+
 RuboCop::RakeTask.new
 
 task :docker do
   raise 'These tasks require docker to be installed' unless find_executable 'docker'
+end
+
+desc 'List all Docker images along with some data about them'
+task :list do
+  images = IMAGES.collect do |name|
+    sha = get_git_sha_from_label(name)
+    sha = sha.yellow unless sha == current_git_sha
+    {
+			name: name,
+			version: get_version_from_label(name),
+			from: get_from_from_dockerfile(name),
+			sha: sha,
+			build: get_buildtime_from_label(name),
+			maintainer: get_maintainer_from_dockerfile(name),
+		}.inject({}) { |h, (k, v)| h[k] = highlight_issues(v); h }
+  end
+  tp.set :max_width, 40
+  tp images
 end
 
 IMAGES.each do |image|
@@ -71,8 +112,8 @@ IMAGES.each do |image|
     desc 'Update Dockerfile label content for new version'
     task :rev do
       replacements = {
-        "#{NAMESPACE}.git.sha" => `git rev-parse HEAD`.strip,
-        "#{NAMESPACE}.build-time" => Time.now.utc.iso8601
+        "#{NAMESPACE}.git.sha" => current_git_sha,
+        "#{NAMESPACE}.buildtime" => Time.now.utc.iso8601
       }
       file_name = "#{image}/Dockerfile"
       text = File.read(file_name)
