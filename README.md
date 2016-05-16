@@ -16,17 +16,26 @@ point for custom images and aim to follow current Docker best practices.
 If you do find yourself customising them please open issues describing
 why and whether this could be handled in these images.
 
-Currently the following images are provided:
-
-* puppet-agent-ubuntu
-* puppet-agent-alpine
-* puppetserver
-
 These are also published to [Docker Hub](https://hub.docker.com/puppet).
 
 # Usage
 
+The repository contains a range of tools for managing the set of
+Dockerfiles. For instance you can list the existing images available.
 
+```
+$ bundle install
+...
+$ be rake list
+NAME                    | VERSION  | FROM                                 | SHA                                      | BUILD                | MAINTAINER
+------------------------|----------|--------------------------------------|------------------------------------------|----------------------|-------------------------------------
+puppet-agent-alpine     | 4.4.2    | alpine:3.3                           | 80a406f29bfcb95d0b08bdf868d048ab1cdadf6a | 2016-05-09T16:43:46Z | Gareth Rushgrove "gareth@puppet.com"
+puppet-agent-ubuntu     | 1.4.1    | ubuntu:14.04                         | 161bca4fed59997fd19581df38678caeefe813bc | 2016-05-16T08:05:27Z | Gareth Rushgrove "gareth@puppet.com"
+puppetdb                | 4.0.2    | ubuntu:14.04                         | 161bca4fed59997fd19581df38678caeefe813bc | 2016-05-16T08:05:27Z | Gareth Rushgrove "gareth@puppet.com"
+puppetdbpostgres        |          | postgres:9.5.2                       | 161bca4fed59997fd19581df38678caeefe813bc | 2016-05-09T14:27:10Z | Gareth Rushgrove "gareth@puppet.com"
+puppetserver            | 2.3.2    | puppet/puppetserver-standalone:2.3.2 | 161bca4fed59997fd19581df38678caeefe813bc | 2016-05-16T08:05:27Z | Gareth Rushgrove "gareth@puppet.com"
+puppetserver-standalone | 2.3.2    | ubuntu:14.04                         | 161bca4fed59997fd19581df38678caeefe813bc | 2016-05-16T08:05:27Z | Gareth Rushgrove "gareth@puppet.com"
+```
 
 # API
 
@@ -50,8 +59,6 @@ The bundled toolchain provides a way of running lint checks, acceptance
 tests, building and publishing resulting Docker images. It is accessed via rake.
 
 ```
-$ bundle install
-...
 $ bundle exec rake -T
 rake all                          # Run all for all images in repository in parallel
 rake build                        # Run build for all images in repository in parallel
@@ -77,8 +84,8 @@ rake rubocop:auto_correct         # Auto-correct RuboCop offenses
 rake test                         # Run test for all images in repository in parallel
 ```
 
-## Maintainers
+# Maintainers
 
 This repository is maintained by: Gareth Rushgrove <gareth@puppet.com>.
 Individual images may have separate maintainers as mentioned in the
-directory READMEs.
+relevant Dockerfiles.
