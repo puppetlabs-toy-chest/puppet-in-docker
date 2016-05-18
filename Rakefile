@@ -45,6 +45,11 @@ task :list do
   tp images
 end
 
+desc 'Garbage collect unused docker filesystem layers'
+task gc: :docker do
+  sh 'docker rmi $(docker images -f "dangling=true" -q)' unless `docker images -f "dangling=true" -q`.empty?
+end
+
 IMAGES.each do |image|
   namespace image.to_sym do |_args|
     RSpec::Core::RakeTask.new(spec: [:docker]) do |t|
