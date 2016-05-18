@@ -16,7 +16,7 @@ NO_CACHE = ENV['DOCKER_NO_CACHE'] || false
 TAG = ENV['DOCKER_IMAGE_TAG'] || 'latest'
 NAMESPACE = ENV['DOCKER_NAMESPACE'] || 'com.puppet'
 
-IMAGES = Dir.glob('*').select { |f| File.directory?(f) && File.exist?("#{f}/Dockerfile") }
+IMAGES = Dir.glob('*').select { |f| File.directory?(f) && File.exist?("#{f}/Dockerfile") && !File.exist?("#{f}/.ignore") }
 
 RuboCop::RakeTask.new
 
