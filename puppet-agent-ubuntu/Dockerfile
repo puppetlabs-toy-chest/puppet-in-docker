@@ -1,9 +1,9 @@
 FROM ubuntu:14.04
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_AGENT_VERSION 1.4.1
+ENV PUPPET_AGENT_VERSION 1.5.0
 
-LABEL com.puppet.version=$PUPPET_AGENT_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="161bca4fed59997fd19581df38678caeefe813bc" com.puppet.buildtime="2016-05-16T08:05:27Z" com.puppet.dockerfile="/Dockerfile"
+LABEL com.puppet.version=$PUPPET_AGENT_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="5e149a952dac882b6e2ade7d68d274208b29b418" com.puppet.buildtime="2016-05-18T08:15:26Z" com.puppet.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
     apt-get install -y wget=1.15-1ubuntu1 && \
