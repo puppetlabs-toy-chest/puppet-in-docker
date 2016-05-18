@@ -19,6 +19,10 @@ module Puppet # :nodoc:
       `git rev-parse HEAD`.strip
     end
 
+    def previous_git_sha
+      `git rev-parse HEAD~1`.strip
+    end
+
     def highlight_issues(value)
       value.nil? ? '     '.on_red : value
     end
