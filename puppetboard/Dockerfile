@@ -17,6 +17,6 @@ EXPOSE 8000
 
 WORKDIR /var/www/puppetboard
 
-CMD ["/usr/local/bin/gunicorn", "-b", "0.0.0.0:8000", "wsgi:application"]
+CMD ["/usr/bin/gunicorn", "-b", "0.0.0.0:8000", "wsgi:application"]
 
 COPY Dockerfile /
