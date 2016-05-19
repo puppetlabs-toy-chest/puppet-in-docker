@@ -1,0 +1,8 @@
+:80
+tls off
+log stdout
+gzip
+root /puppetexplorer
+proxy /api puppetdb:8080 {
+  without /api
+}
