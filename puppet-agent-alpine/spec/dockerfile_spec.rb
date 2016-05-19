@@ -1,15 +1,9 @@
-require 'serverspec'
-require 'docker'
+require 'spec_helper'
+
+CURRENT_DIRECTORY = File.dirname(File.dirname(__FILE__))
 
 describe 'Dockerfile' do
-  before(:all) do
-    root = File.dirname(File.dirname(__FILE__))
-    image = Docker::Image.build_from_dir(root)
-
-    set :os, family: :alpine
-    set :backend, :docker
-    set :docker_image, image.id
-  end
+  include_context 'with a docker image'
 
   describe package('puppet') do
     it { is_expected.to be_installed.by('gem') }
@@ -20,7 +14,11 @@ describe 'Dockerfile' do
     it { should be_executable }
   end
 
-  describe command('/usr/bin/puppet help') do
-    its(:exit_status) { should eq 0 }
+  describe 'Dockerfile#running' do
+    include_context 'with a docker container'
+
+    describe command('/usr/bin/puppet help') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 end

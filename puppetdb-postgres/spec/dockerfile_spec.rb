@@ -1,15 +1,9 @@
-require 'serverspec'
-require 'docker'
+require 'spec_helper'
+
+CURRENT_DIRECTORY = File.dirname(File.dirname(__FILE__))
 
 describe 'Dockerfile' do
-  before(:all) do
-    root = File.dirname(File.dirname(__FILE__))
-    image = Docker::Image.build_from_dir(root)
-
-    set :os, family: :debian
-    set :backend, :docker
-    set :docker_image, image.id
-  end
+  include_context 'with a docker image'
 
   describe package('postgresql-common') do
     it { is_expected.to be_installed }
