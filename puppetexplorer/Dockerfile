@@ -13,6 +13,9 @@ RUN wget "https://caddyserver.com/download/build?os=linux&arch=amd64&features=co
 RUN wget https://github.com/spotify/puppetexplorer/releases/download/"$PUPPET_EXPLORER_VERSION"/puppetexplorer-"$PUPPET_EXPLORER_VERSION".tar.gz -O - | tar -xz && \
     ln -s puppetexplorer-"$PUPPET_EXPLORER_VERSION" /puppetexplorer
 
+# This patch fixes https://github.com/spotify/puppetexplorer/issues/56 until a new release of puppetexplorer is made
+RUN sed -i -e 's/puppetlabs\.puppetdb\.query\.population/puppetlabs\.puppetdb\.population/g' -e 's/type=default,//g' /puppetexplorer/app.js
+
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY config.js /puppetexplorer
 
