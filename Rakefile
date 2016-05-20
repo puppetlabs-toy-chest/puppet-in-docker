@@ -64,6 +64,7 @@ IMAGES.each do |image|
 
     desc 'Build docker image'
     task build: :docker do
+      # TODO: this should actually get the version from the ENV
       version = get_version_from_label(image)
       path = "#{REPOSITORY}/#{image}"
       info "Building #{path}:latest"
@@ -114,9 +115,14 @@ IMAGES.each do |image|
   end
 end
 
-[:test, :lint, :build, :publish, :rev, :spec].each do |task_name|
+[:test, :lint, :build, :publish, :rev].each do |task_name|
   desc "Run #{task_name} for all images in repository in parallel"
   multitask task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
+end
+
+[:spec].each do |task_name|
+  desc "Run #{task_name} for all images in repository in parallel"
+  task task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
 
 task default: [
