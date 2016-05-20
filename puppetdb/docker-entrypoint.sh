@@ -1,4 +1,11 @@
 #!/bin/bash
+
+trap ctrl_c INT
+
+function ctrl_c() {
+  exit 0
+}
+
 if [ ! -d "/etc/puppetlabs/puppetdb/ssl" ]; then
   while ! nc -z puppet 8140; do
     sleep 1
@@ -8,4 +15,4 @@ if [ ! -d "/etc/puppetlabs/puppetdb/ssl" ]; then
   /opt/puppetlabs/server/bin/puppetdb ssl-setup -f
 fi
 
-/opt/puppetlabs/server/bin/puppetdb "$@"
+exec /opt/puppetlabs/server/bin/puppetdb "$@"

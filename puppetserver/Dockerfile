@@ -1,7 +1,7 @@
-FROM puppet/puppetserver-standalone:2.3.2
+FROM puppet/puppetserver-standalone:2.4.0
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPETDB_TERMINUS_VERSION="4.0.2"
+ENV PUPPETDB_TERMINUS_VERSION="4.1.0"
 
 LABEL com.puppet.version=$PUPPET_SERVER_VERSION com.puppet.git.sha="161bca4fed59997fd19581df38678caeefe813bc" com.puppet.buildtime="2016-05-16T08:05:27Z"
 
