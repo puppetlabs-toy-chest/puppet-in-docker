@@ -6,8 +6,9 @@ describe 'Dockerfile' do
   include_context 'with a docker image'
 
   it 'uses the correct version of Ubuntu' do
-    os_version = command('lsb_release -a').stdout
-    expect(os_version).to include('Ubuntu 14.04')
+    os_version = command('cat /etc/lsb-release').stdout
+    expect(os_version).to include('16.04')
+    expect(os_version).to include('Ubuntu')
   end
 
   describe package('puppetserver') do
