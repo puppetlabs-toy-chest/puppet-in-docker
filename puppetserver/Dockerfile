@@ -3,7 +3,7 @@ MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
 ENV PUPPETDB_TERMINUS_VERSION="4.1.0"
 
-LABEL com.puppet.version=$PUPPET_SERVER_VERSION com.puppet.git.sha="161bca4fed59997fd19581df38678caeefe813bc" com.puppet.buildtime="2016-05-16T08:05:27Z"
+LABEL com.puppet.version=$PUPPET_SERVER_VERSION com.puppet.git.sha="97475979ffe252d33a9df67524b5aa313022cb05" com.puppet.buildtime="2016-05-20T10:01:19Z"
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y puppetdb-termini="$PUPPETDB_TERMINUS_VERSION"-1puppetlabs1 && \
