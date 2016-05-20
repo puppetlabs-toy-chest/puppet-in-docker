@@ -15,7 +15,7 @@ RUN apk add --update ruby ruby-rdoc ruby-irb ca-certificates && \
 # Workaround for https://tickets.puppetlabs.com/browse/FACT-1351
 RUN rm /usr/lib/ruby/gems/2.2.0/gems/facter-"$FACTER_VERSION"/lib/facter/blockdevices.rb
 
-COPY Dockerfile /
-
 ENTRYPOINT ["/usr/bin/puppet"]
 CMD ["agent", "--verbose", "--onetime", "--no-daemonize", "--summarize" ]
+
+COPY Dockerfile /

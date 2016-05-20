@@ -20,11 +20,11 @@ COPY request-logging.xml /etc/puppetlabs/puppetserver/
 
 RUN puppet config set autosign true --section master
 
-COPY Dockerfile /
-
 VOLUME /etc/puppetlabs/code/
 
 EXPOSE 8140
 
 ENTRYPOINT ["/opt/puppetlabs/bin/puppetserver"]
 CMD ["foreground" ]
+
+COPY Dockerfile /

@@ -14,8 +14,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY Dockerfile /
-
 COPY puppetdb /etc/default/
 COPY logging /etc/puppetlabs/puppetdb/logging
 
@@ -29,3 +27,5 @@ EXPOSE 8080 8081
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["foreground"]
+
+COPY Dockerfile /

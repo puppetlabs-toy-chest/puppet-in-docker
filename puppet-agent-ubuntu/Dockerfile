@@ -14,9 +14,9 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY Dockerfile /
-
 ENV PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
 
 ENTRYPOINT ["/opt/puppetlabs/bin/puppet"]
 CMD ["agent", "--verbose", "--onetime", "--no-daemonize", "--summarize" ]
+
+COPY Dockerfile /
