@@ -3,7 +3,7 @@ require 'time'
 
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
-require 'colorize'
+require 'rainbow'
 require 'table_print'
 
 require_relative 'lib/puppet/dockerfile'
@@ -28,7 +28,7 @@ desc 'List all Docker images along with some data about them'
 task :list do
   images = IMAGES.collect do |name|
     sha = get_git_sha_from_label(name)
-    sha = sha.yellow unless sha == current_git_sha || sha == previous_git_sha
+    sha = Rainbow(sha).yellow unless sha == current_git_sha || sha == previous_git_sha
     {
       name: name,
       version: get_version_from_label(name),

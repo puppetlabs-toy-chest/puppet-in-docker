@@ -1,18 +1,18 @@
 require 'json'
-require 'colorize'
+require 'rainbow'
 
 module Puppet # :nodoc:
   module Dockerfile # :nodoc:
     def info(message)
-      puts "==> #{message}".green
+      puts Rainbow("==> #{message}").green
     end
 
     def warn(message)
-      puts "==> #{message}".yellow
+      puts Rainbow("==> #{message}").yellow
     end
 
     def error(message)
-      puts "==> #{message}".red
+      puts Rainbow("==> #{message}").red
     end
 
     def current_git_sha
@@ -24,7 +24,7 @@ module Puppet # :nodoc:
     end
 
     def highlight_issues(value)
-      value.nil? ? '     '.on_red : value
+      value.nil? ? Rainbow('     ').bg(:red) : value
     end
 
     def method_missing(method_name, *args)
