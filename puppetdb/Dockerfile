@@ -11,7 +11,7 @@ RUN apt-get update && \
     wget https://github.com/Yelp/dumb-init/releases/download/v"$DUMB_INIT_VERSION"/dumb-init_"$DUMB_INIT_VERSION"_amd64.deb && \
     dpkg -i puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb && \
     dpkg -i dumb-init_"$DUMB_INIT_VERSION"_amd64.deb && \
-    rm *.deb && \
+    rm puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb dumb-init_"$DUMB_INIT_VERSION"_amd64.deb && \
     apt-get update && \
     apt-get install --no-install-recommends -y puppet-agent="$PUPPET_AGENT_VERSION"-1"$UBUNTU_CODENAME" puppetdb="$PUPPETDB_VERSION"-1puppetlabs1 && \
     apt-get clean && \
