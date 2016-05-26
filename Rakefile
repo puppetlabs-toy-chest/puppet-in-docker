@@ -64,8 +64,7 @@ IMAGES.each do |image|
 
     desc 'Build docker image'
     task build: :docker do
-      # TODO: this should actually get the version from the ENV
-      version = get_version_from_label(image)
+      version = get_version_from_env(image)
       path = "#{REPOSITORY}/#{image}"
       info "Building #{path}:latest"
       cmd = "cd #{image} && docker build -t #{path}:latest"
