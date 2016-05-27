@@ -1,14 +1,16 @@
-A series of dockerfiles, and associated build toolchain, for building
-Docker images for for Puppet and related software.
+# Puppet-in-Docker
 
-# Experimental
+A series of Dockerfiles, and the associated build toolchain, for building
+Docker images containing Puppet and related software.
+
+## Experimental
 
 This approach to packaging Puppet software is currently experimental.
 The resulting images are not a supported way of running Puppet or Puppet
 Enterprise and are likely to change quickly based on feedback from
 users. Please do try them out and let us know what you think.
 
-# Description
+## Description
 
 The individual Dockerfile's available in this repo can be copied and
 used locally for your own purposes. They may act as a good starting
@@ -18,7 +20,7 @@ why and whether this could be handled in these images.
 
 You can find published versions of these images on [Docker Hub](https://hub.docker.com/puppet).
 
-# Image usage
+## Image usage
 
 The images allow for standing up various Puppet applications on Docker.
 For a complete set of examples see the [Puppet in Docker examples
@@ -93,7 +95,7 @@ Note that the same approach works with the facter image too.
 docker run --privileged -v /tmp:/tmp --net host -v /etc:/etc -v /var:/var -v /usr:/usr -v lib64:/lib64 puppet/facter os
 ```
 
-## API
+### API
 
 The resulting images expose a label based API for gathering information
 about the image or for use in further automation. For example:
@@ -113,7 +115,7 @@ Please suggest other standard fields for inclusion in the API. Over time
 a formal specification maybe created along with further tooling but this
 is currently an experimental feature.
 
-# Toolchain
+## Toolchain
 
 The repository contains a range of tools for managing the set of
 Dockerfiles and resulting images. For instance listing the images
@@ -139,7 +141,7 @@ puppetserver            | 2.3.2   | puppet/puppetserver-standalone:2.4.0 | 161bc
 puppetserver-standalone | 2.4.0   | ubuntu:16.04                         | 97475979ffe252d33a9df67524b5aa313022cb05 | 2016-05-20T10:01:19Z | Gareth Rushgrove "gareth@puppet.com"
 ```
 
-## Building images
+### Building images
 
 The following command will build the _puppet-agent-alpine_ image, the
 relevant Dockerfile can be found in the directory of the same name.
@@ -152,7 +154,7 @@ This is just a simple interface to running `docker build` and should
 create both a latest and versioned Docker image in your local
 repository.
 
-## Testing images
+### Testing images
 
 The repository provides two types of tests:
 
@@ -167,7 +169,7 @@ command.
 $ bundle exec rake puppet-agent-alpine:test
 ```
 
-## Additional commands
+### Additional commands
 
 The included toolchain provides a way of running lint checks, bumping
 version information, running acceptance tests, building and then publishing the
@@ -198,7 +200,7 @@ rake spec                         # Run spec for all images in repository in par
 rake test                         # Run test for all images in repository in parallel
 ```
 
-# Adding additional images
+## Adding additional images
 
 Additional images can be easily added to the repository. Simply create a
 folder in the root of the repository and include in that folder a
@@ -208,8 +210,9 @@ containing tests verifying the images behaviour. See examples in the
 other folders for help getting started. Please suggest new images via
 pull request.
 
-# Maintainers
+## Maintainers
 
 This repository is maintained by: Gareth Rushgrove <gareth@puppet.com>.
+
 Individual images may have separate maintainers as mentioned in the
 relevant Dockerfiles.
