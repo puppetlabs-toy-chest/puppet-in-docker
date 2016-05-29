@@ -33,7 +33,7 @@ describe 'Dockerfile' do
   describe 'Dockerfile#running' do
     include_context 'with a docker container'
 
-    describe process('bash') do
+    describe process('dumb-init') do
       its(:user) { should eq 'root' }
       its(:pid) { should eq 1 }
       its(:args) { should match(/foreground/) }
