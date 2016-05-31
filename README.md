@@ -1,22 +1,16 @@
 # Puppet-in-Docker
 
-A series of Dockerfiles, and the associated build toolchain, for building
-Docker images containing Puppet and related software.
+A series of Dockerfiles, and the associated build toolchain, for building Docker images containing Puppet and related software.
 
 ## Experimental
 
-This approach to packaging Puppet software is currently experimental.
-The resulting images are not a supported way of running Puppet or Puppet
-Enterprise and are likely to change quickly based on feedback from
-users. Please do try them out and let us know what you think.
+This approach to packaging Puppet software is experimental. The resulting images are not a supported way of running Puppet or Puppet Enterprise and are likely to change quickly based on feedback from users. Please do try them out and let us know what you think.
 
 ## Description
 
-The individual Dockerfile's available in this repo can be copied and
-used locally for your own purposes. They may act as a good starting
-point for custom images and aim to follow current Docker best practices.
-If you do find yourself customising them please open issues describing
-why and whether this could be handled in these images.
+You can copy the individual Dockerfiles in this repo and use them locally for your own purposes. They were created following current Docker best practices, and can be good starting points for custom images. 
+
+If you do find yourself customizing these images, please open issues describing why and whether your use is something that could be handled in these images.
 
 You can find published versions of these images on [Docker Hub](https://hub.docker.com/u/puppet):
 
@@ -32,74 +26,54 @@ You can find published versions of these images on [Docker Hub](https://hub.dock
 
 ## Image usage
 
-The images allow for standing up various Puppet applications on Docker.
-For a complete set of examples see the [Puppet in Docker examples
-repository](https://github.com/puppetlabs/puppet-in-docker-examples).
-As a simple example:
+You can use the images for standing up various Puppet applications on Docker. For a complete set of examples see the [Puppet in Docker examples repository](https://github.com/puppetlabs/puppet-in-docker-examples).
 
-First we'll create a docker network. For the purposes of this
-demonstration we're using the network and service discovery features
-added in Docker 1.11.
+As an example, first we'll create a Docker network. For the purposes of this demonstration, we're using the network and service discovery features added in Docker 1.11.
 
 ```
 docker network create puppet
 ```
 
-Then we can run a copy of Puppet Server. The `standalone` part refers to
-the fact this image does not automatically connect to PuppetDB. That's
-fine for this simple demo, but in other cases you may prefer the
-`puppet/puppetserver` image.
+Then we can run a copy of Puppet Server. In the below code, `standalone` means that this image does not automatically connect to PuppetDB. That's fine for this simple demo, but in other cases you might prefer the `puppet/puppetserver` image.
 
 ```
 docker run --net puppet --name puppet --hostname puppet puppet/puppetserver-standalone
 ```
 
-The container should boot and, as we're running in the foreground, it
-should print lot output to the console. Once running we can run a simple
-puppet agent in another container.
+This boots the container and, becuase we're running in the foreground, it prints lot output to the console. After this is running, we can run a Puppet agent in another container.
 
 ```
 docker run --net puppet puppet/puppet-agent-ubuntu
 ```
 
-This should connect to the Puppet Server, apply the resulting
-catalog, print a summary and then exit. Now that's not very useful
-(apart from for development purposes) but that's just a hello world
-demonstration. See the above examples repository for fuller examples, or
+This connects to the Puppet Server, applies the resulting catalog, prints a summary, and then exits. That's not very useful apart from development purposes, but this is just a basic demonstration. See the above examples repository for fuller examples, or
 consider:
 
 ### Running periodically
 
-The above example runs with the `onetime` flag. which means Puppet
-exits after the first run. The container can be run with any arbitrary puppet commands, for
-example:
+The above example runs with the `onetime` flag, which means that Puppet exits after the first run. The container can be run with any arbitrary Puppet commands, such as:
 
 ```
 docker run --net puppet puppet/puppet-agent-ubuntu agent --verbose --no-daemonize -summarize
 ```
 
-This container won't exit, and instead will apply Puppet every 30
-minutes based on the latest content from the Puppet Server.
+This container won't exit, and instead applies Puppet every 30 minutes based on the latest content from the Puppet Server.
 
 ### Puppet resource
 
-Puppet provides more than just the `agent` or `apply` commands. One
-notable example is `resource`. For instance the following command will
-list all of the packages installed on the image.
+You can also use other Puppet commands, such as `resource`. For instance, the following command lists all of the packages installed on the image.
 
 ```
 docker run puppet/puppet-agent-ubuntu resource package --param provider
 ```
 
-You may however be more interested in the packages installed on the host
-rather than in the container. For that you can mount in various folder
-from the host like so.
+To find out about the packages installed on the host, rather than in the container, mount in various folder from the host like so.
 
 ```
 docker run --privileged -v /tmp:/tmp --net host -v /etc:/etc -v /var:/var -v /usr:/usr -v lib64:/lib64 puppet/puppet-agent-ubuntu resource package
 ```
 
-Note that the same approach works with the facter image too.
+The same approach works with the Facter image as well.
 
 ```
 docker run --privileged -v /tmp:/tmp --net host -v /etc:/etc -v /var:/var -v /usr:/usr -v lib64:/lib64 puppet/facter os
@@ -107,8 +81,7 @@ docker run --privileged -v /tmp:/tmp --net host -v /etc:/etc -v /var:/var -v /us
 
 ### API
 
-The resulting images expose a label based API for gathering information
-about the image or for use in further automation. For example:
+The resulting images expose a label-based API for gathering information about the image or for use in further automation. For example:
 
 ```
 $ docker inspect -f "{{json .Config.Labels }}" puppet/puppet-agent-ubuntu | jq
@@ -121,18 +94,13 @@ $ docker inspect -f "{{json .Config.Labels }}" puppet/puppet-agent-ubuntu | jq
 }
 ```
 
-Please suggest other standard fields for inclusion in the API. Over time
-a formal specification maybe created along with further tooling but this
-is currently an experimental feature.
+Please suggest other standard fields for inclusion in the API. Over time, a formal specification may be created, along with further tooling, but this is an experimental feature.
 
 ## Toolchain
 
-The repository contains a range of tools for managing the set of
-Dockerfiles and resulting images. For instance listing the images
-available.
+The repository contains a range of tools for managing the set of Dockerfiles and the resulting images. For instance, you can list the images available.
 
-Note that using the toolchain requires a Ruby environment and
-Bundler installed. You'll also need a local Docker installation.
+Note that using the toolchain requires a Ruby environment and Bundler. You'll also need a local Docker installation.
 
 ```
 $ bundle install
@@ -153,27 +121,22 @@ puppetserver-standalone | 2.4.0   | ubuntu:16.04                         | 97475
 
 ### Building images
 
-The following command will build the _puppet-agent-alpine_ image, the
-relevant Dockerfile can be found in the directory of the same name.
+The following command builds the `puppet-agent-alpine` image. You can find the relevant Dockerfile in the directory of the same name.
 
 ```
 $ bundle exec rake puppet-agent-alpine:build
 ```
 
-This is just a simple interface to running `docker build` and should
-create both a latest and versioned Docker image in your local
-repository.
+This is a simple interface to run `docker build` and creates both a latest and a versioned Docker image in your local repository.
 
 ### Testing images
 
 The repository provides two types of tests:
 
-1. Validation of the Dockerfile using
-   [Hadolint](https://github.com/lukasmartinelli/hadolint)
+1. Validation of the Dockerfile using [Hadolint](https://github.com/lukasmartinelli/hadolint)
 2. Acceptance tests of the image using [ServerSpec](http://serverspec.org)
 
-These can be run individually or together, the later using the following
-command.
+These can be run individually or together. To run them together, use the following command.
 
 ```
 $ bundle exec rake puppet-agent-alpine:test
@@ -181,9 +144,7 @@ $ bundle exec rake puppet-agent-alpine:test
 
 ### Additional commands
 
-The included toolchain provides a way of running lint checks, bumping
-version information, running acceptance tests, building and then publishing the
-resulting Docker images. It is accessed via rake.
+The included toolchain allows you to run lint checks, bump version information, run acceptance tests, build, and then publish the resulting Docker images. You can access the toolchain with `rake`.
 
 ```
 $ bundle exec rake -T
@@ -212,17 +173,10 @@ rake test                         # Run test for all images in repository in par
 
 ## Adding additional images
 
-Additional images can be easily added to the repository. Simply create a
-folder in the root of the repository and include in that folder a
-standard Dockerfile. The above commands should auto-discover the new
-image. Note that it is recommended to also include a spec folder
-containing tests verifying the images behaviour. See examples in the
-other folders for help getting started. Please suggest new images via
-pull request.
+To add additional images to the repository, create a folder in the root of the repository and include in that folder a standard Dockerfile. The above commands should auto-discover the new image. We recommend that you also include a spec folder containing tests verifying the image's behavior. See examples in the other folders for help getting started. Please suggest new images via pull request.
 
 ## Maintainers
 
 This repository is maintained by: Gareth Rushgrove <gareth@puppet.com>.
 
-Individual images may have separate maintainers as mentioned in the
-relevant Dockerfiles.
+Individual images may have separate maintainers as mentioned in the relevant Dockerfiles.
