@@ -49,23 +49,27 @@ module Puppet # :nodoc:
       text[/^#{value.upcase} (.*$)/, 1]
     end
 
+    def get_value_from_variable(image, var)
+      text = File.read("#{image}/Dockerfile")
+      var[0] = ''
+      text[/#{var}=(["a-zA-Z0-9\.]+)/, 1]
+    end
+
+    def get_value_from_base_image(image, value)
+      base_image = get_value_from_dockerfile(image, 'from')
+      base_image_without_version = base_image.split(':')[0]
+      base_image_without_repo = base_image_without_version.split('/')[1]
+      get_value_from_env(base_image_without_repo, value)
+    end
+
     def get_value_from_env(image, value)
       text = File.read("#{image}/Dockerfile")
       all_labels = text[/^LABEL (.*$)/, 1]
       version = all_labels[/#{NAMESPACE}.#{value.tr('_', '.')}=([$"a-zA-Z0-9_\.]+)/, 1]
       # Versions might be ENVIRONMENT variable references
-      if version.start_with?('$')
-        version_reference = version
-        version_reference[0] = ''
-        version = text[/#{version_reference}=(["a-zA-Z0-9\.]+)/, 1]
-      end
+      version = get_value_from_variable(image, version) if version.start_with?('$')
       # Environment variables might be set in the higher-level image
-      if version.nil?
-        base_image = get_value_from_dockerfile(image, 'from')
-        base_image_without_version = base_image.split(':')[0]
-        base_image_without_repo = base_image_without_version.split('/')[1]
-        version = get_value_from_env(base_image_without_repo, value)
-      end
+      version = get_value_from_base_image(image, value) if version.nil?
       version.gsub(/\A"|"\Z/, '')
     end
   end
