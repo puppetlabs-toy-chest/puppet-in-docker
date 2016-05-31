@@ -18,7 +18,17 @@ point for custom images and aim to follow current Docker best practices.
 If you do find yourself customising them please open issues describing
 why and whether this could be handled in these images.
 
-You can find published versions of these images on [Docker Hub](https://hub.docker.com/puppet).
+You can find published versions of these images on [Docker Hub](https://hub.docker.com/u/puppet):
+
+* [puppet/puppet-agent-ubuntu](https://hub.docker.com/r/puppet/puppet-agent-ubuntu/)
+* [puppet/puppetserver-standalone](https://hub.docker.com/r/puppet/puppetserver-standalone/)
+* [puppet/facter](https://hub.docker.com/r/puppet/facter/)
+* [puppet/puppetserver](https://hub.docker.com/r/puppet/puppetserver/)
+* [puppet/puppet-agent-alpine](https://hub.docker.com/r/puppet/puppet-agent-alpine/)
+* [puppet/puppetexplorer](https://hub.docker.com/r/puppet/puppetexplorer/)
+* [puppet/puppetdb-postgres](https://hub.docker.com/r/puppet/puppetdb-postgres/)
+* [puppet/puppetboard](https://hub.docker.com/r/puppet/puppetboard/)
+* [puppet/puppetdb](https://hub.docker.com/r/puppet/puppetdb/)
 
 ## Image usage
 
