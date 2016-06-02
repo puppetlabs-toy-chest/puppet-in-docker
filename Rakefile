@@ -120,11 +120,12 @@ end
 end
 
 [:spec].each do |task_name|
-  desc "Run #{task_name} for all images in repository in parallel"
+  desc "Run #{task_name} for all images in repository"
   task task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
 
 task default: [
   :rubocop,
-  :test
+  :lint,
+  :spec
 ]
