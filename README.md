@@ -8,7 +8,7 @@ This approach to packaging Puppet software is experimental. The resulting images
 
 ## Description
 
-You can copy the individual Dockerfiles in this repo and use them locally for your own purposes. They were created following current Docker best practices, and can be good starting points for custom images. 
+You can copy the individual Dockerfiles in this repo and use them locally for your own purposes. They were created following current Docker best practices, and can be good starting points for custom images.
 
 If you do find yourself customizing these images, please open issues describing why and whether your use is something that could be handled in these images.
 
@@ -40,7 +40,7 @@ Then we can run a copy of Puppet Server. In the below code, `standalone` means t
 docker run --net puppet --name puppet --hostname puppet puppet/puppetserver-standalone
 ```
 
-This boots the container and, becuase we're running in the foreground, it prints lot output to the console. After this is running, we can run a Puppet agent in another container.
+This boots the container and, becuase we're running in the foreground, it prints lots of output to the console. After this is running, we can run a Puppet agent in another container.
 
 ```
 docker run --net puppet puppet/puppet-agent-ubuntu
