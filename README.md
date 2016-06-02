@@ -1,3 +1,6 @@
+[![Build
+Status](https://travis-ci.org/puppetlabs/puppet-in-docker.svg?branch=master)](https://travis-ci.org/puppetlabs/puppet-in-docker)
+
 # Puppet-in-Docker
 
 A series of Dockerfiles, and the associated build toolchain, for building Docker images containing Puppet and related software.
