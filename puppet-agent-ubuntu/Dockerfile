@@ -1,9 +1,9 @@
 FROM ubuntu:16.04
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_AGENT_VERSION="1.5.0" UBUNTU_CODENAME="xenial"
+ENV PUPPET_AGENT_VERSION="1.5.1" UBUNTU_CODENAME="xenial"
 
-LABEL com.puppet.version=$PUPPET_AGENT_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="ca4b5726dd0e244b04ed7f84d6568f79943c91ce" com.puppet.buildtime="2016-05-29T08:18:48Z" com.puppet.dockerfile="/Dockerfile"
+LABEL com.puppet.version=$PUPPET_AGENT_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="e052bc472f14ab2d0c5a0a2fdb714abf11b232d5" com.puppet.buildtime="2016-06-02T06:04:22Z" com.puppet.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
     apt-get install -y wget=1.17.1-1ubuntu1 && \
