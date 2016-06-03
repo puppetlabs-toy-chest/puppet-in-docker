@@ -57,7 +57,7 @@ consider:
 The above example runs with the `onetime` flag, which means that Puppet exits after the first run. The container can be run with any arbitrary Puppet commands, such as:
 
 ```
-docker run --net puppet puppet/puppet-agent-ubuntu agent --verbose --no-daemonize -summarize
+docker run --net puppet puppet/puppet-agent-ubuntu agent --verbose --no-daemonize --summarize
 ```
 
 This container won't exit, and instead applies Puppet every 30 minutes based on the latest content from the Puppet Server.
