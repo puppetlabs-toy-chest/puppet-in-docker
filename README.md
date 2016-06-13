@@ -26,6 +26,8 @@ You can find published versions of these images on [Docker Hub](https://hub.dock
 * [puppet/puppetdb-postgres](https://hub.docker.com/r/puppet/puppetdb-postgres/)
 * [puppet/puppetboard](https://hub.docker.com/r/puppet/puppetboard/)
 * [puppet/puppetdb](https://hub.docker.com/r/puppet/puppetdb/)
+* [puppet/puppet-agent-centos](https://hub.docker.com/r/puppet/puppet-agenbt-centos/)
+* [puppet/puppet-agent-debian](https://hub.docker.com/r/puppet/puppet-agent-debian/)
 
 ## Image usage
 
