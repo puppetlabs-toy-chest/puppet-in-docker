@@ -1,7 +1,9 @@
 FROM ubuntu:16.04
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_SERVER_VERSION="2.4.0" DUMB_INIT_VERSION="1.0.2" UBUNTU_CODENAME="xenial" PUPPETSERVER_JAVA_ARGS="-Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
+ENV PUPPET_SERVER_VERSION="2.4.0" DUMB_INIT_VERSION="1.0.2" UBUNTU_CODENAME="xenial" PUPPETSERVER_JAVA_ARGS="-Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH CONTROL_REPO_GIT_URI=""
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 LABEL com.puppet.version=$PUPPET_SERVER_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="612f307aafa54ba3d7b00a80fc8268796dfd18a7" com.puppet.buildtime="2016-06-03T10:41:13Z" com.puppet.dockerfile="/Dockerfile"
 
@@ -14,6 +16,8 @@ RUN apt-get update && \
     rm puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb dumb-init_"$DUMB_INIT_VERSION"_amd64.deb && \
     apt-get update && \
     apt-get install --no-install-recommends -y puppetserver="$PUPPET_SERVER_VERSION"-1puppetlabs1 && \
+    apt-get install -y git=1:2.7.4-0ubuntu1 && \
+    /opt/puppetlabs/puppet/bin/gem install r10k --no-ri --no-rdoc && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
