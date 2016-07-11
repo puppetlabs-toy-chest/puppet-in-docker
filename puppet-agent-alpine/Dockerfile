@@ -1,9 +1,9 @@
 FROM alpine:3.4
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_VERSION="4.5.1" FACTER_VERSION="2.4.6"
+ENV PUPPET_VERSION="4.5.2" FACTER_VERSION="2.4.6"
 
-LABEL com.puppet.version=$PUPPET_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="093132b2d0bc766a55c7820fab69d7bcd945aeb6" com.puppet.buildtime="2016-06-03T08:39:36Z" com.puppet.dockerfile="/Dockerfile"
+LABEL com.puppet.version=$PUPPET_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="4afbb13eea650fce8301b2d181687f806700fc2f" com.puppet.buildtime="2016-06-15T08:48:27Z" com.puppet.dockerfile="/Dockerfile"
 
 RUN apk add --update ruby ruby-rdoc ruby-irb ca-certificates && \
     echo http://dl-4.alpinelinux.org/alpine/edge/testing/ >> /etc/apk/repositories && \
