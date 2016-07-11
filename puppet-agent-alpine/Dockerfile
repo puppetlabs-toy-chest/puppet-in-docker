@@ -5,7 +5,13 @@ ENV PUPPET_VERSION="4.5.2" FACTER_VERSION="2.4.6"
 
 LABEL com.puppet.version=$PUPPET_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="4afbb13eea650fce8301b2d181687f806700fc2f" com.puppet.buildtime="2016-06-15T08:48:27Z" com.puppet.dockerfile="/Dockerfile"
 
-RUN apk add --update ruby ruby-rdoc ruby-irb ca-certificates && \
+RUN apk add --update \
+      ca-certificates \
+      pciutils \
+      ruby \
+      ruby-irb \
+      ruby-rdoc \
+      && \
     echo http://dl-4.alpinelinux.org/alpine/edge/testing/ >> /etc/apk/repositories && \
     apk add --update shadow && \
     rm -rf /var/cache/apk/* && \
