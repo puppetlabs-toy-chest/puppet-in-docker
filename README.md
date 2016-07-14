@@ -28,6 +28,7 @@ You can find published versions of these images on [Docker Hub](https://hub.dock
 * [puppet/puppetdb](https://hub.docker.com/r/puppet/puppetdb/)
 * [puppet/puppet-agent-centos](https://hub.docker.com/r/puppet/puppet-agenbt-centos/)
 * [puppet/puppet-agent-debian](https://hub.docker.com/r/puppet/puppet-agent-debian/)
+* [puppet/puppet-inventory](https://hub.docker.com/r/puppet/puppet-inventory/)
 
 ## Image usage
 
