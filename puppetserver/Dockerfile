@@ -1,9 +1,9 @@
 FROM puppet/puppetserver-standalone:2.4.0
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPETDB_TERMINUS_VERSION="4.1.0"
+ENV PUPPETDB_TERMINUS_VERSION="4.2.0"
 
-LABEL com.puppet.version=$PUPPET_SERVER_VERSION com.puppet.git.sha="612f307aafa54ba3d7b00a80fc8268796dfd18a7" com.puppet.buildtime="2016-06-03T10:41:07Z"
+LABEL com.puppet.version=$PUPPET_SERVER_VERSION com.puppet.git.sha="b441445ca4c565eee2536bd01260c498012d5c5b" com.puppet.buildtime="2016-08-12T07:55:18Z"
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y puppetdb-termini="$PUPPETDB_TERMINUS_VERSION"-1puppetlabs1 && \
