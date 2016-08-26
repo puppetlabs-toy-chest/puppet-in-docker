@@ -1,4 +1,4 @@
-FROM puppet/puppet-agent-ubuntu:1.6.0
+FROM puppet/puppet-agent-ubuntu:1.6.1
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-LABEL com.puppet.version=$PUPPET_AGENT_VERSION com.puppet.git.sha="b5a3e59144c896d49c8d14fcc46c9690d713663b" com.puppet.buildtime="2016-08-12T09:27:31Z"
+LABEL com.puppet.version=$PUPPET_AGENT_VERSION com.puppet.git.sha="d5e378b4ac1775b7a8125208a65e0e5ef2823411" com.puppet.buildtime="2016-08-24T08:18:06Z"

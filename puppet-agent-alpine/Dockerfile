@@ -1,9 +1,9 @@
 FROM alpine:3.4
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_VERSION="4.6.0" FACTER_VERSION="2.4.6"
+ENV PUPPET_VERSION="4.6.1" FACTER_VERSION="2.4.6"
 
-LABEL com.puppet.version=$PUPPET_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="ffeb9772ad67da19d12b69a898fd431c919188ed" com.puppet.buildtime="2016-08-12T08:14:20Z" com.puppet.dockerfile="/Dockerfile"
+LABEL com.puppet.version=$PUPPET_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="d5e378b4ac1775b7a8125208a65e0e5ef2823411" com.puppet.buildtime="2016-08-24T08:00:12Z" com.puppet.dockerfile="/Dockerfile"
 
 RUN apk add --update \
       ca-certificates \
@@ -12,7 +12,7 @@ RUN apk add --update \
       ruby-irb \
       ruby-rdoc \
       && \
-    echo http://dl-4.alpinelinux.org/alpine/edge/testing/ >> /etc/apk/repositories && \
+    echo http://dl-4.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
     apk add --update shadow && \
     rm -rf /var/cache/apk/* && \
     gem install puppet:"$PUPPET_VERSION" facter:"$FACTER_VERSION" && \
