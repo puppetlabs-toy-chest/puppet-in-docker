@@ -1,9 +1,9 @@
 FROM alpine:3.4
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_VERSION="4.6.1" FACTER_VERSION="2.4.6"
+ENV PUPPET_VERSION="4.6.2" FACTER_VERSION="2.4.6"
 
-LABEL com.puppet.version=$PUPPET_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="d5e378b4ac1775b7a8125208a65e0e5ef2823411" com.puppet.buildtime="2016-08-24T08:00:12Z" com.puppet.dockerfile="/Dockerfile"
+LABEL com.puppet.version=$PUPPET_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="b465594f8f1f326d98a215d200d1b53d33c44275" com.puppet.buildtime="2016-09-13T08:30:12Z" com.puppet.dockerfile="/Dockerfile"
 
 RUN apk add --update \
       ca-certificates \
