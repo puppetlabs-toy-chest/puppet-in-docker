@@ -34,7 +34,18 @@ module Puppet # :nodoc:
         get_value_from_dockerfile(*args, Regexp.last_match(1))
       elsif method_name =~ /^get_(.+)_from_env$/
         get_value_from_env(*args, Regexp.last_match(1))
+      else
+        super
       end
+    end
+
+    def respond_to_missing?(method_name, include_private = false)
+      patterns = [
+        /^get_(.+)_from_label$/,
+        /^get_(.+)_from_dockerfile$/,
+        /^get_(.+)_from_env$/
+      ]
+      method_name.to_s =~ Regexp.union(patterns) || super
     end
 
     def get_value_from_label(image, value)
