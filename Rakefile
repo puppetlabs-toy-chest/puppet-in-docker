@@ -14,9 +14,24 @@ include Puppet::Dockerfile
 REPOSITORY = ENV['DOCKER_REPOSITORY'] || 'puppet'
 NO_CACHE = ENV['DOCKER_NO_CACHE'] || false
 TAG = ENV['DOCKER_IMAGE_TAG'] || 'latest'
-NAMESPACE = ENV['DOCKER_NAMESPACE'] || 'com.puppet'
+NAMESPACE = ENV['DOCKER_NAMESPACE'] || 'org.label-schema'
 
 IMAGES = Dir.glob('*').select { |f| File.directory?(f) && File.exist?("#{f}/Dockerfile") && !File.exist?("#{f}/.ignore") }
+
+MICROBADGER_TOKENS = {
+  'puppet-agent'            => 'n4wMgsk5mHUoJM1IpygaYiDeTwc=',
+  'puppet-agent-alpine'     => 'Q0FbCSv_eOLoUkAA20dCGSCsxFU=',
+  'puppet-agent-centos'     => 'x1NxmFkzHLvhYpR25s4g0pN_M9c=',
+  'puppet-agent-debian'     => 'vqtjj3MKBeZXi2W4vFwQcZmseJc=',
+  'factor'                  => 'xa-Yc1xoqs_b_QCaIq55gj-bme4=',
+  'puppetdb'                => 'z76OPnge96LMvIELFWknSYJbs24=',
+  'puppetdb-postgres'       => 'eo8WFlTPNL1IdbiGiDjb7yntZUw=',
+  'puppetserver-standalone' => 'XpINInOKHSl0ce5dBthyqs_vnxw=',
+  'puppetserver'            => 'G0BfSGbPoc9eqAmToDhnv8et5ag=',
+  'puppetboard'             => '2bDFb5JXgC6_l3dqHxv64HOZRm0=',
+  'puppetexplorer'          => 'hCiz0KejqgjngwrOoNoi3QrNeEM=',
+  'puppet-inventory'        => '-qatAsCRU2aPh2vXrudqj0g6Brs='
+}.freeze
 
 RuboCop::RakeTask.new
 
@@ -83,8 +98,7 @@ IMAGES.each do |image|
       sh "docker pull -a '#{path}'"
     end
 
-    desc 'Publish docker image'
-    task publish: :docker do
+    task push: :docker do
       version = get_version_from_label(image)
       path = "#{REPOSITORY}/#{image}"
       if version
@@ -97,6 +111,12 @@ IMAGES.each do |image|
       sh "docker push '#{path}:latest'"
     end
 
+    desc 'Publish docker image'
+    task publish: [
+      :push,
+      :update_microbadger
+    ]
+
     task test: [
       :lint,
       :spec
@@ -105,8 +125,8 @@ IMAGES.each do |image|
     desc 'Update Dockerfile label content for new version'
     task :rev do
       replacements = {
-        "#{NAMESPACE}.git.sha" => current_git_sha,
-        "#{NAMESPACE}.buildtime" => Time.now.utc.iso8601
+        "#{NAMESPACE}.vcs-ref" => current_git_sha,
+        "#{NAMESPACE}.build-date" => Time.now.utc.iso8601
       }
       file_name = "#{image}/Dockerfile"
       text = File.read(file_name)
@@ -117,10 +137,26 @@ IMAGES.each do |image|
       end
       File.open(file_name, 'w') { |file| file.puts text }
     end
+
+    task :update_microbadger do
+      if MICROBADGER_TOKENS.key? image
+        address = "https://hooks.microbadger.com/images/#{REPOSITORY}/#{image}/#{MICROBADGER_TOKENS[image]}"
+        puts address
+        uri = URI.parse(address)
+        response = Net::HTTP.post_form(uri, {})
+        if response.code == '200'
+          info "microbadger.com updating badges for #{image}"
+        else
+          warn "issue updating microbadger.com badges for #{image}"
+        end
+      else
+        warn "missing microbadger.com webhook URL for #{image}"
+      end
+    end
   end
 end
 
-[:test, :lint, :build, :publish, :revi, :pull].each do |task_name|
+[:test, :lint, :build, :publish, :rev, :pull].each do |task_name|
   desc "Run #{task_name} for all images in repository in parallel"
   multitask task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
