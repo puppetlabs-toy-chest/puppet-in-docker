@@ -75,7 +75,6 @@ module Puppet # :nodoc:
 
     def get_value_from_env(image, value)
       text = File.read("#{image}/Dockerfile")
-      all_labels = text[/^LABEL (.*$)/, 1]
       all_labels = text.scan(/org\.label-schema\.(.+)=(.+) \\?/).to_h
       version = all_labels[value]
       # Versions might be ENVIRONMENT variable references
