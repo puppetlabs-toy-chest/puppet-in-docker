@@ -77,6 +77,12 @@ IMAGES.each do |image|
       end
     end
 
+    desc 'Pull all tags of image'
+    task pull: :docker do
+      path = "#{REPOSITORY}/#{image}"
+      sh "docker pull -a '#{path}'"
+    end
+
     desc 'Publish docker image'
     task publish: :docker do
       version = get_version_from_label(image)
@@ -114,7 +120,7 @@ IMAGES.each do |image|
   end
 end
 
-[:test, :lint, :build, :publish, :rev].each do |task_name|
+[:test, :lint, :build, :publish, :revi, :pull].each do |task_name|
   desc "Run #{task_name} for all images in repository in parallel"
   multitask task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
