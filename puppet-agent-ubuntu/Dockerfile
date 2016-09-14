@@ -3,7 +3,16 @@ MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
 ENV PUPPET_AGENT_VERSION="1.6.2" UBUNTU_CODENAME="xenial"
 
-LABEL com.puppet.version=$PUPPET_AGENT_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="b465594f8f1f326d98a215d200d1b53d33c44275" com.puppet.buildtime="2016-09-13T08:29:38Z" com.puppet.dockerfile="/Dockerfile"
+LABEL org.label-schema.vendor="Puppet" \
+      org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
+      org.label-schema.name="Puppet Agent (Ubuntu)" \
+      org.label-schema.license="Apache-2.0" \
+      org.label-schema.version=$PUPPET_AGENT_VERSION \
+      org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
+      org.label-schema.vcs-ref="9fc1cd792f392700232ebc188168a5dd5d997486" \
+      org.label-schema.build-date="2016-09-14T14:07:43Z" \
+      org.label-schema.schema-version="1.0" \
+      com.puppet.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
     apt-get install -y wget=1.17.1-1ubuntu1 lsb-release=9.20160110ubuntu0.2 && \

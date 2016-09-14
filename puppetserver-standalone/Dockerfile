@@ -3,7 +3,16 @@ MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
 ENV PUPPET_SERVER_VERSION="2.6.0" DUMB_INIT_VERSION="1.0.2" UBUNTU_CODENAME="xenial" PUPPETSERVER_JAVA_ARGS="-Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
 
-LABEL com.puppet.version=$PUPPET_SERVER_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="f25d46a253298a3dd72f1bf829638e9e48bee353" com.puppet.buildtime="2016-09-13T08:10:16Z" com.puppet.dockerfile="/Dockerfile"
+LABEL org.label-schema.vendor="Puppet" \
+      org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
+      org.label-schema.name="Puppet Server (No PuppetDB)" \
+      org.label-schema.license="Apache-2.0" \
+      org.label-schema.version=$PUPPET_SERVER_VERSION \
+      org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
+      org.label-schema.vcs-ref="791b5505348e901a21b2ca2700068e2743019848" \
+      org.label-schema.build-date="2016-09-14T13:37:00Z" \
+      org.label-schema.schema-version="1.0" \
+      com.puppet.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
     apt-get install -y wget=1.17.1-1ubuntu1 && \

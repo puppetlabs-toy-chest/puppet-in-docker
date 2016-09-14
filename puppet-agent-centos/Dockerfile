@@ -3,7 +3,16 @@ MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
 ENV PUPPET_AGENT_VERSION="1.6.2"
 
-LABEL com.puppet.version=$PUPPET_AGENT_VERSION com.puppet.git.repo="https://github.com/puppetlabs/dockerfiles" com.puppet.git.sha="b465594f8f1f326d98a215d200d1b53d33c44275" com.puppet.buildtime="2016-09-13T08:29:45Z" com.puppet.dockerfile="/Dockerfile"
+LABEL org.label-schema.vendor="Puppet" \
+      org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
+      org.label-schema.name="Puppet Agent (Centos)" \
+      org.label-schema.license="Apache-2.0" \
+      org.label-schema.version=$PUPPET_AGENT_VERSION \
+      org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
+      org.label-schema.vcs-ref="791b5505348e901a21b2ca2700068e2743019848" \
+      org.label-schema.build-date="2016-09-14T13:37:00Z" \
+      org.label-schema.schema-version="1.0" \
+      com.puppet.dockerfile="/Dockerfile"
 
 RUN rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm && \
     yum upgrade -y && \
