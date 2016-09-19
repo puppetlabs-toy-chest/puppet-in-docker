@@ -42,14 +42,14 @@ end
 desc 'List all Docker images along with some data about them'
 task :list do
   images = IMAGES.collect do |name|
-    sha = get_git_sha_from_label(name)
+    sha = get_vcs_ref_from_label(name)
     sha = Rainbow(sha).yellow unless sha == current_git_sha || sha == previous_git_sha
     {
       name: name,
       version: get_version_from_label(name),
       from: get_from_from_dockerfile(name),
       sha: sha,
-      build: get_buildtime_from_label(name),
+      build: get_build_date_from_label(name),
       maintainer: get_maintainer_from_dockerfile(name)
     }.each_with_object({}) do |(k, v), h|
       h[k] = highlight_issues(v)
