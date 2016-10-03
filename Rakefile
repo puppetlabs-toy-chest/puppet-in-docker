@@ -23,6 +23,7 @@ MICROBADGER_TOKENS = {
   'puppet-agent-alpine'     => 'Q0FbCSv_eOLoUkAA20dCGSCsxFU=',
   'puppet-agent-centos'     => 'x1NxmFkzHLvhYpR25s4g0pN_M9c=',
   'puppet-agent-debian'     => 'vqtjj3MKBeZXi2W4vFwQcZmseJc=',
+  'puppet-agent-ubuntu'     => '0UWrSJA_m7mYXTyW3tm9yhWcEzM=',
   'factor'                  => 'xa-Yc1xoqs_b_QCaIq55gj-bme4=',
   'puppetdb'                => 'z76OPnge96LMvIELFWknSYJbs24=',
   'puppetdb-postgres'       => 'eo8WFlTPNL1IdbiGiDjb7yntZUw=',
