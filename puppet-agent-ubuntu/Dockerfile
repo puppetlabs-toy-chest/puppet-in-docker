@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_AGENT_VERSION="1.7.1" UBUNTU_CODENAME="xenial"
+ENV PUPPET_AGENT_VERSION="1.8.0" UBUNTU_CODENAME="xenial"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
@@ -9,8 +9,8 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_AGENT_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="0f258136aba5b4e75ae8baa9c632f03bb9a791a4" \
-      org.label-schema.build-date="2016-11-15T10:32:33Z" \
+      org.label-schema.vcs-ref="a9a206f50b6c9f5885bbf263d3e1fd25ab9be199" \
+      org.label-schema.build-date="2016-11-15T10:36:43Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
