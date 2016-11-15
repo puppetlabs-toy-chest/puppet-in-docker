@@ -75,7 +75,8 @@ IMAGES.each do |image|
     desc 'Run Hadolint against the Dockerfile'
     task lint: :docker do
       info "Running Hadolint to check the style of #{image}/Dockerfile"
-      sh "docker run --rm -i lukasmartinelli/hadolint < #{image}/Dockerfile"
+      # Ignore the need to pin package versions
+      sh "docker run --rm -i lukasmartinelli/hadolint hadolint --ignore DL3008 - < #{image}/Dockerfile"
     end
 
     desc 'Build docker image'

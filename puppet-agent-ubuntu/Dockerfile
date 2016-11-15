@@ -9,17 +9,20 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_AGENT_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="9fc1cd792f392700232ebc188168a5dd5d997486" \
-      org.label-schema.build-date="2016-09-14T14:07:43Z" \
+      org.label-schema.vcs-ref="d8c3b0b5dd275f29ddd0af5c253d37db390d25c9" \
+      org.label-schema.build-date="2016-11-15T10:22:03Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
-    apt-get install -y wget=1.17.1-1ubuntu1 lsb-release=9.20160110ubuntu0.2 && \
+    apt-get install --no-install-recommends -y wget ca-certificates lsb-release && \
     wget https://apt.puppetlabs.com/puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb && \
     dpkg -i puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb && \
+    rm puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb && \
     apt-get update && \
     apt-get install --no-install-recommends -y puppet-agent="$PUPPET_AGENT_VERSION"-1"$UBUNTU_CODENAME" && \
+    apt-get remove --purge -y lsb-release wget && \
+    apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
