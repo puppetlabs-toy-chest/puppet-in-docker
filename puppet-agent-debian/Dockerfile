@@ -15,7 +15,7 @@ LABEL org.label-schema.vendor="Puppet" \
       com.puppet.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
-    apt-get install -y wget=1.16-1 && \
+    apt-get install -y wget && \
     wget https://apt.puppetlabs.com/puppetlabs-release-pc1-"$DEBIAN_CODENAME".deb && \
     dpkg -i puppetlabs-release-pc1-"$DEBIAN_CODENAME".deb && \
     rm puppetlabs-release-pc1-"$DEBIAN_CODENAME".deb && \

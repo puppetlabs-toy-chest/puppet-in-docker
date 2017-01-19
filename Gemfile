@@ -1,9 +1,9 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-gem 'rake'
-gem 'serverspec'
 gem 'docker-api'
-gem 'rainbow'
-gem 'rubocop', require: false
 gem 'guard-rake'
+gem 'rainbow'
+gem 'rake'
+gem 'rubocop', require: false
+gem 'serverspec'
 gem 'table_print'
