@@ -11,3 +11,4 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.build-date="2016-09-14T13:37:00Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
+

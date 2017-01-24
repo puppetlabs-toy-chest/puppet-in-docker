@@ -5,9 +5,13 @@ CURRENT_DIRECTORY = File.dirname(File.dirname(__FILE__))
 describe 'Dockerfile' do
   include_context 'with a docker image'
 
-  ['puppet-agent', 'wget', 'lsb-release'].each do |package_name|
+  describe package('puppet-agent') do
+    it { is_expected.to be_installed }
+  end
+
+  ['wget', 'lsb-release'].each do |package_name|
     describe package(package_name) do
-      it { is_expected.to be_installed }
+      it { is_expected.not_to be_installed }
     end
   end
 
