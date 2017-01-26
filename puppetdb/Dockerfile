@@ -32,6 +32,11 @@ COPY logging /etc/puppetlabs/puppetdb/logging
 RUN rm -fr /etc/puppetlabs/puppetdb/conf.d
 COPY conf.d /etc/puppetlabs/puppetdb/conf.d
 
+# Persist the agent SSL certificate.
+VOLUME /etc/puppetlabs/puppet/ssl/
+# /etc/puppetlabs/puppetdb/ssl is automatically populated from here and
+# doesn't need a separate volume.
+
 COPY docker-entrypoint.sh /
 
 EXPOSE 8080 8081
