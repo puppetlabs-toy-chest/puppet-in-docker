@@ -24,7 +24,8 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install --no-install-recommends -y puppetserver="$PUPPET_SERVER_VERSION"-1puppetlabs1 && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    gem install --no-rdoc --no-ri r10k
 
 COPY puppetserver /etc/default/puppetserver
 COPY logback.xml /etc/puppetlabs/puppetserver/
