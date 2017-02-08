@@ -114,14 +114,14 @@ IMAGES.each do |image|
     end
 
     desc 'Publish docker image'
-    task publish: [
-      :push,
-      :update_microbadger
+    task publish: %i[
+      push
+      update_microbadger
     ]
 
-    task test: [
-      :lint,
-      :spec
+    task test: %i[
+      lint
+      spec
     ]
 
     desc 'Update Dockerfile label content for new version'
@@ -158,7 +158,7 @@ IMAGES.each do |image|
   end
 end
 
-[:test, :lint, :build, :publish, :rev, :pull].each do |task_name|
+%i[test lint build publish rev pull].each do |task_name|
   desc "Run #{task_name} for all images in repository in parallel"
   multitask task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
@@ -168,8 +168,8 @@ end
   task task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
 
-task default: [
-  :rubocop,
-  :lint,
-  :spec
+task default: %i[
+  rubocop
+  lint
+  spec
 ]
