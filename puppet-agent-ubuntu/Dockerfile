@@ -21,7 +21,7 @@ RUN apt-get update && \
     rm puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb && \
     apt-get update && \
     apt-get install --no-install-recommends -y puppet-agent="$PUPPET_AGENT_VERSION"-1"$UBUNTU_CODENAME" && \
-    apt-get remove --purge -y lsb-release wget && \
+    apt-get remove --purge -y wget && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
