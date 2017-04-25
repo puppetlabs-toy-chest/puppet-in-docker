@@ -48,5 +48,9 @@ describe 'Dockerfile' do
     describe command('/opt/puppetlabs/bin/puppetserver --help') do
       its(:exit_status) { should eq 0 }
     end
+
+    describe command('r10k --help') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 end
