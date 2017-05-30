@@ -27,6 +27,6 @@ EXPOSE $PUPPETBOARD_PORT
 
 WORKDIR /var/www/puppetboard
 
-CMD /usr/bin/gunicorn -b 0.0.0.0:${PUPPETBOARD_PORT} wsgi:application
+CMD /usr/bin/gunicorn -b 0.0.0.0:${PUPPETBOARD_PORT} --access-logfile=/dev/stdout wsgi:application
 
 COPY Dockerfile /
