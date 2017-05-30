@@ -6,6 +6,15 @@ describe 'Dockerfile' do
   include_context 'using alpine'
   include_context 'with a docker image'
 
+  describe package('curl') do
+    it { is_expected.to be_installed }
+  end
+
+  describe command('curl --version') do
+    its(:stdout) { is_expected.to contain('curl') }
+    its(:exit_status) { is_expected.to eq 0 }
+  end
+
   describe package('py-pip') do
     it { is_expected.to be_installed }
   end
