@@ -9,11 +9,11 @@ describe 'Dockerfile' do
     it { is_expected.to be_installed }
   end
 
-  describe package('postgresql-9.5') do
+  describe package('postgresql-9.6') do
     it { is_expected.to be_installed }
   end
 
-  describe package('postgresql-contrib-9.5') do
+  describe package('postgresql-contrib-9.6') do
     it { is_expected.to be_installed }
   end
 
