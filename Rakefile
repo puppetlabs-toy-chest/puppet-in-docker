@@ -31,7 +31,8 @@ MICROBADGER_TOKENS = {
   'puppetserver'            => 'G0BfSGbPoc9eqAmToDhnv8et5ag=',
   'puppetboard'             => '2bDFb5JXgC6_l3dqHxv64HOZRm0=',
   'puppetexplorer'          => 'hCiz0KejqgjngwrOoNoi3QrNeEM=',
-  'puppet-inventory'        => '-qatAsCRU2aPh2vXrudqj0g6Brs='
+  'puppet-inventory'        => '-qatAsCRU2aPh2vXrudqj0g6Brs=',
+  'r10k'                    => 'SZFceeWZ6Etn83fv_6T8u_lkL8Y='
 }.freeze
 
 RuboCop::RakeTask.new
