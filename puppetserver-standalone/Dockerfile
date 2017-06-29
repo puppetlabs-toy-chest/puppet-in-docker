@@ -33,9 +33,7 @@ COPY request-logging.xml /etc/puppetlabs/puppetserver/
 
 RUN puppet config set autosign true --section master
 
-VOLUME /etc/puppetlabs/code/ \
-       /etc/puppetlabs/puppet/ssl/ \
-       /opt/puppetlabs/server/data/puppetserver/
+VOLUME /etc/puppetlabs/puppet/ssl/
 
 COPY docker-entrypoint.sh /
 
