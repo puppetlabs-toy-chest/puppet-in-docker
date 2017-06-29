@@ -44,7 +44,7 @@ desc 'List all Docker images along with some data about them'
 task :list do
   images = IMAGES.collect do |name|
     sha = get_vcs_ref_from_label(name)
-    sha = Rainbow(sha).yellow unless sha == current_git_sha || sha == previous_git_sha
+    sha = Rainbow(sha).yellow unless [current_git_sha, previous_git_sha].include? sha
     {
       name: name,
       version: get_version_from_label(name),
