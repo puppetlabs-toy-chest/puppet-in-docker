@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_SERVER_VERSION="2.7.2" DUMB_INIT_VERSION="1.2.0" UBUNTU_CODENAME="xenial" PUPPETSERVER_JAVA_ARGS="-Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
+ENV PUPPET_SERVER_VERSION="2.7.2" DUMB_INIT_VERSION="1.2.0" UBUNTU_CODENAME="xenial" PUPPETSERVER_JAVA_ARGS="-Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH PUPPET_HEALTHCHECK_ENVIRONMENT="production"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
@@ -50,7 +50,7 @@ HEALTHCHECK --interval=10s --timeout=10s --retries=90 CMD \
   --cert   $(puppet config print hostcert) \
   --key    $(puppet config print hostprivkey) \
   --cacert $(puppet config print localcacert) \
-  https://puppet:8140/production/status/test \
+  https://puppet:8140/${PUPPET_HEALTHCHECK_ENVIRONMENT}/status/test \
   |  grep -q '"is_alive":true' \
   || exit 1
 
