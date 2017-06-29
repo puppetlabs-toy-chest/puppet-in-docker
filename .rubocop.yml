@@ -3,3 +3,9 @@ Metrics/LineLength:
 
 Metrics/BlockLength:
   Max: 100
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes

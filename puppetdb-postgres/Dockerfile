@@ -1,4 +1,4 @@
-FROM postgres:9.5.3
+FROM postgres:9.6.3
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
 LABEL org.label-schema.vendor="Puppet" \
