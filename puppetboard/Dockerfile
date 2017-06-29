@@ -28,10 +28,10 @@ WORKDIR /var/www/puppetboard
 
 CMD ["/usr/bin/gunicorn", "-b", "0.0.0.0:8000", "wsgi:application"]
 
-COPY Dockerfile /
-
 # Health check
 HEALTHCHECK --interval=10s --timeout=10s --retries=90 CMD \
   curl --fail -X GET localhost:${PUPPETBOARD_PORT} \
   |  grep -q 'Live from PuppetDB' \
   || exit 1
+
+COPY Dockerfile /
