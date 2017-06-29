@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# This scripts prints the list of images along with download counts
+# from Docker Hub, and at the end prints the total number of downloads
+
+declare -a arr=(puppet-agent
+                puppet-agent-alpine
+                puppet-agent-ubuntu
+                puppet-agent-debian
+                puppet-agent-centos
+                facter
+                puppetserver-standalone
+                puppetserver
+                puppetdb
+                puppetdb-postgres
+                puppetexplorer
+                puppetboard
+                puppet-inventory
+                )
+
+date
+
+sum=0
+for image in "${arr[@]}"
+do
+	count=$(curl -s https://registry.hub.docker.com/v2/repositories/puppet/"$image"/ | jq .pull_count)
+	printf "%-25s %s\n" "$image" "$count"
+	sum=`expr "$sum" + "$count"`
+done
+
+echo --------------------------------
+printf "%-25s %s\n" Total "$sum"
