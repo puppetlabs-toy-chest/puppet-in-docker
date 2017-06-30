@@ -1,5 +1,6 @@
 require 'mkmf'
 require 'time'
+require 'net/http'
 
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
@@ -24,7 +25,7 @@ MICROBADGER_TOKENS = {
   'puppet-agent-centos'     => 'x1NxmFkzHLvhYpR25s4g0pN_M9c=',
   'puppet-agent-debian'     => 'vqtjj3MKBeZXi2W4vFwQcZmseJc=',
   'puppet-agent-ubuntu'     => '0UWrSJA_m7mYXTyW3tm9yhWcEzM=',
-  'factor'                  => 'xa-Yc1xoqs_b_QCaIq55gj-bme4=',
+  'facter'                  => 'xa-Yc1xoqs_b_QCaIq55gj-bme4=',
   'puppetdb'                => 'z76OPnge96LMvIELFWknSYJbs24=',
   'puppetdb-postgres'       => 'eo8WFlTPNL1IdbiGiDjb7yntZUw=',
   'puppetserver-standalone' => 'XpINInOKHSl0ce5dBthyqs_vnxw=',
@@ -167,7 +168,7 @@ task :update_base_images do
   end
 end
 
-%i[test lint build publish rev pull].each do |task_name|
+%i[test lint build publish rev pull update_microbadger].each do |task_name|
   desc "Run #{task_name} for all images in repository in parallel"
   multitask task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
