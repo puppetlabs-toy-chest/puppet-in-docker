@@ -1,4 +1,4 @@
-shared_context 'with a running docker container' do
+shared_context 'with a docker container with a dummy cmd' do
   before(:all) do
     @image = Docker::Image.build_from_dir(CURRENT_DIRECTORY)
     @container = Docker::Container.create(
