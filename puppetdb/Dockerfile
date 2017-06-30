@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPETDB_VERSION="4.3.0" PUPPET_AGENT_VERSION="1.8.3" DUMB_INIT_VERSION="1.2.0" UBUNTU_CODENAME="xenial" PUPPETDB_DATABASE_CONNECTION="//postgres:5432/puppetdb" PUPPETDB_USER=puppetdb PUPPETDB_PASSWORD=puppetdb PUPPETDB_JAVA_ARGS="-Djava.net.preferIPv4Stack=true -Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
+ENV PUPPETDB_VERSION="4.4.0" PUPPET_AGENT_VERSION="1.10.4" DUMB_INIT_VERSION="1.2.0" UBUNTU_CODENAME="xenial" PUPPETDB_DATABASE_CONNECTION="//postgres:5432/puppetdb" PUPPETDB_USER=puppetdb PUPPETDB_PASSWORD=puppetdb PUPPETDB_JAVA_ARGS="-Djava.net.preferIPv4Stack=true -Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
@@ -9,8 +9,8 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPETDB_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="a2b1fbbc73177ddc3def23d167f9beb9c3ef9f6c" \
-      org.label-schema.build-date="2017-02-21T17:25:14Z" \
+      org.label-schema.vcs-ref="aa33c1ab5f7baa46010cc7ecad7b322619ce7fb8" \
+      org.label-schema.build-date="2017-06-30T13:12:06Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
