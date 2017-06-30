@@ -158,6 +158,13 @@ IMAGES.each do |image|
   end
 end
 
+task :update_base_images do
+  desc 'Update base images used in set'
+  ['ubuntu:16.04', 'centos:7', 'alpine:3.4', 'debian:8', 'postgres:9.5.3'].each do |image|
+      sh "docker pull #{image}"
+  end
+end
+
 %i[test lint build publish rev pull].each do |task_name|
   desc "Run #{task_name} for all images in repository in parallel"
   multitask task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
