@@ -1,7 +1,7 @@
 FROM debian:8
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_AGENT_VERSION="1.9.0" DEBIAN_CODENAME="jessie"
+ENV PUPPET_AGENT_VERSION="1.9.1" DEBIAN_CODENAME="jessie"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
@@ -9,8 +9,8 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_AGENT_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="98b5785e979000e9e910c326fb3e7a585dd62dc5" \
-      org.label-schema.build-date="2017-06-30T16:21:05Z" \
+      org.label-schema.vcs-ref="e898bdacdde94e49fd88702c7a923edf1d995f35" \
+      org.label-schema.build-date="2017-06-30T16:33:51Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
