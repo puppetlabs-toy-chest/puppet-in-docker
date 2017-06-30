@@ -9,7 +9,7 @@ describe 'Dockerfile' do
     it { is_expected.to be_installed }
   end
 
-  describe file('/opt/puppetlabs/bin/r10k') do
+  describe file('/opt/puppetlabs/puppet/bin/r10k') do
     it { should exist }
     it { should be_executable }
   end
