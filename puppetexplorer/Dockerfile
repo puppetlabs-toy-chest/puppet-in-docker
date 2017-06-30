@@ -9,16 +9,21 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_EXPLORER_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="a2b1fbbc73177ddc3def23d167f9beb9c3ef9f6c" \
-      org.label-schema.build-date="2017-02-21T17:25:14Z" \
+      org.label-schema.vcs-ref="9ae52c7caf31995dd5b8b294434654e088a791b4" \
+      org.label-schema.build-date="2017-06-30T12:56:07Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
-RUN apk add --no-cache --update ca-certificates wget && \
+RUN apk add --no-cache --update ca-certificates curl wget && \
     update-ca-certificates && \
     rm -rf /var/cache/apk/*
 
-RUN wget "https://caddyserver.com/download/build?os=linux&arch=amd64&features=prometheus,realip" -O - | tar -xz --no-same-owner -C /usr/bin/ caddy
+RUN curl --silent --show-error --fail --location \
+      --header "Accept: application/tar+gzip, application/x-gzip, application/octet-stream" -o - \
+      "https://caddyserver.com/download/linux/amd64?plugins=http.prometheus,http.realip" \
+    | tar --no-same-owner -C /usr/bin/ -xz caddy \
+ && chmod 0755 /usr/bin/caddy \
+ && /usr/bin/caddy -version
 
 RUN wget https://github.com/spotify/puppetexplorer/releases/download/"$PUPPET_EXPLORER_VERSION"/puppetexplorer-"$PUPPET_EXPLORER_VERSION".tar.gz -O - | tar -xz && \
     ln -s puppetexplorer-"$PUPPET_EXPLORER_VERSION" /puppetexplorer
