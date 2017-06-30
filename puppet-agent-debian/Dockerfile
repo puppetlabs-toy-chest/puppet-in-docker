@@ -1,7 +1,7 @@
 FROM debian:8
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_AGENT_VERSION="1.10.4" DEBIAN_CODENAME="jessie"
+ENV PUPPET_AGENT_VERSION="5.0.0" DEBIAN_CODENAME="jessie"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
@@ -9,16 +9,16 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_AGENT_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="d5e221734a54c7e45243b9457d4813e3c2aa8dc0" \
-      org.label-schema.build-date="2017-06-30T17:04:42Z" \
+      org.label-schema.vcs-ref="0e9a4acda83d43f673d96c245b6d859dcae0b7e7" \
+      org.label-schema.build-date="2017-06-30T17:14:08Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
     apt-get install -y wget && \
-    wget https://apt.puppetlabs.com/puppetlabs-release-pc1-"$DEBIAN_CODENAME".deb && \
-    dpkg -i puppetlabs-release-pc1-"$DEBIAN_CODENAME".deb && \
-    rm puppetlabs-release-pc1-"$DEBIAN_CODENAME".deb && \
+    wget https://apt.puppetlabs.com/puppet5-release-"$DEBIAN_CODENAME".deb && \
+    dpkg -i puppet5-release-"$DEBIAN_CODENAME".deb && \
+    rm puppet5-release-"$DEBIAN_CODENAME".deb && \
     apt-get update && \
     apt-get install --no-install-recommends -y puppet-agent="$PUPPET_AGENT_VERSION"-1"$DEBIAN_CODENAME" && \
     apt-get clean && \
