@@ -1,9 +1,10 @@
-FROM alpine:3.4
+FROM python:2.7-alpine
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
 ENV PUPPET_BOARD_VERSION="0.2.2" \
     GUNICORN_VERSION="19.7.1" \
-    PUPPETBOARD_PORT="8000"
+    PUPPETBOARD_PORT="8000" \
+    PUPPETBOARD_SETTINGS="docker_settings.py"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
@@ -16,17 +17,12 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
-RUN apk add --no-cache --update py-pip && \
-    rm -rf /var/cache/apk/*
-
 RUN pip install puppetboard=="$PUPPET_BOARD_VERSION" gunicorn=="$GUNICORN_VERSION"
-
-COPY wsgi.py settings.py /var/www/puppetboard/
 
 EXPOSE $PUPPETBOARD_PORT
 
 WORKDIR /var/www/puppetboard
 
-CMD /usr/bin/gunicorn -b 0.0.0.0:${PUPPETBOARD_PORT} --access-logfile=/dev/stdout wsgi:application
+CMD gunicorn -b 0.0.0.0:${PUPPETBOARD_PORT} --access-logfile=/dev/stdout puppetboard.app:app
 
 COPY Dockerfile /
