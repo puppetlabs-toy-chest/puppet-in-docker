@@ -6,7 +6,7 @@ describe 'Dockerfile' do
   include_context 'using centos'
   include_context 'with a docker image'
 
-  describe yumrepo('puppetlabs-pc1') do
+  describe yumrepo('puppet5') do
     it { should exist }
   end
 

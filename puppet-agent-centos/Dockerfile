@@ -1,7 +1,7 @@
 FROM centos:7
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_AGENT_VERSION="1.10.4"
+ENV PUPPET_AGENT_VERSION="5.0.0"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
@@ -9,12 +9,12 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_AGENT_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="7be53b2a8148d85915cfa813d1c119c72de8ec57" \
-      org.label-schema.build-date="2017-07-01T09:50:18Z" \
+      org.label-schema.vcs-ref="4a54acf8414fc23bcf1879e98521e5862c9d7268" \
+      org.label-schema.build-date="2017-07-01T15:54:46Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
-RUN rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm && \
+RUN rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm && \
     yum upgrade -y && \
     yum update -y && \
     yum install -y puppet-agent-"$PUPPET_AGENT_VERSION" && \
