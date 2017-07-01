@@ -9,13 +9,13 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPETDB_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="32b6e3dab5b06e5722f3e400d5ea243471c5ecfb" \
-      org.label-schema.build-date="2017-06-30T13:48:33Z" \
+      org.label-schema.vcs-ref="3728a10fe653ba6e740d7196e3927b0c6cdd0d2c" \
+      org.label-schema.build-date="2017-07-01T08:20:42Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
-    apt-get install -y wget=1.17.1-1ubuntu1 netcat=1.10-41 && \
+    apt-get install -y wget netcat lsb-release && \
     wget https://apt.puppetlabs.com/puppet5-release-"$UBUNTU_CODENAME".deb && \
     wget https://github.com/Yelp/dumb-init/releases/download/v"$DUMB_INIT_VERSION"/dumb-init_"$DUMB_INIT_VERSION"_amd64.deb && \
     dpkg -i puppet5-release-"$UBUNTU_CODENAME".deb && \
