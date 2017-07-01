@@ -14,7 +14,7 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.vcs-ref="23e643fb61f462738e63b3f6700744a2455ca3a6" \
       org.label-schema.build-date="2017-06-30T08:56:49Z" \
-      org.label-schema.schema-version="1.0" \
+      org.label-schema.schema-version="0.2.2" \
       com.puppet.dockerfile="/Dockerfile"
 
 RUN pip install puppetboard=="$PUPPET_BOARD_VERSION" gunicorn=="$GUNICORN_VERSION"
