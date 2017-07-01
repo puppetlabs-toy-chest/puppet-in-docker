@@ -1,7 +1,7 @@
 FROM centos:7
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_AGENT_VERSION="1.10.0"
+ENV PUPPET_AGENT_VERSION="1.10.1"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
@@ -9,8 +9,8 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_AGENT_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="9fc6903b9a35f99d76ed03503ad635bc1fa54ac1" \
-      org.label-schema.build-date="2017-07-01T09:01:57Z" \
+      org.label-schema.vcs-ref="c2a0ea581ec2a4fb74703816fb26dc108299fd40" \
+      org.label-schema.build-date="2017-07-01T09:06:47Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
