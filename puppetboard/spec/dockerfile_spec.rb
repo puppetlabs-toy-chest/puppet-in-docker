@@ -6,8 +6,9 @@ describe 'Dockerfile' do
   include_context 'using alpine'
   include_context 'with a docker image'
 
-  describe package('py-pip') do
-    it { is_expected.to be_installed }
+  describe file('/usr/local/bin/pip') do
+    it { should exist }
+    it { should be_executable }
   end
 
   describe package('puppetboard') do
@@ -18,7 +19,7 @@ describe 'Dockerfile' do
     it { is_expected.to be_installed.by('pip') }
   end
 
-  describe file('/usr/bin/gunicorn') do
+  describe file('/usr/local/bin/gunicorn') do
     it { should exist }
     it { should be_executable }
   end
