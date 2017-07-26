@@ -1,6 +1,7 @@
 require 'mkmf'
 require 'time'
 require 'net/http'
+require 'securerandom'
 
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
@@ -120,12 +121,23 @@ IMAGES.each do |image|
     task publish: %i[
       push
       update_microbadger
+      manifesto
     ]
 
     task test: %i[
       lint
       spec
     ]
+
+    task :manifesto do
+      raise 'This task require manifesto to be installed' unless find_executable 'manifesto'
+      name = SecureRandom.hex
+      sh "docker run --name #{name} --rm -d --entrypoint '' #{REPOSITORY}/#{image} /bin/sh -c 'while true; do echo hello world; sleep 1; done'"
+      sh "docker run --rm  -v /var/run/docker.sock:/var/run/docker.sock puppet/lumogon scan #{name} > /tmp/#{name}.json"
+      sh "docker kill #{name}"
+      sh "manifesto put #{REPOSITORY}/#{image} lumogon /tmp/#{name}.json"
+      sh "rm /tmp/#{name}.json"
+    end
 
     desc 'Update Dockerfile label content for new version'
     task :rev do
@@ -173,7 +185,7 @@ end
   multitask task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
 
-[:spec].each do |task_name|
+%i[spec manifesto].each do |task_name|
   desc "Run #{task_name} for all images in repository"
   task task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
