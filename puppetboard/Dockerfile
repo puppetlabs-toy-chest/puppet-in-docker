@@ -16,7 +16,7 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
-RUN apk add --no-cache --update py-pip && \
+RUN apk add --no-cache --update curl py-pip && \
     rm -rf /var/cache/apk/*
 
 RUN pip install puppetboard=="$PUPPET_BOARD_VERSION" gunicorn=="$GUNICORN_VERSION"
@@ -28,5 +28,11 @@ EXPOSE $PUPPETBOARD_PORT
 WORKDIR /var/www/puppetboard
 
 CMD /usr/bin/gunicorn -b 0.0.0.0:${PUPPETBOARD_PORT} --access-logfile=/dev/stdout wsgi:application
+
+# Health check
+HEALTHCHECK --interval=10s --timeout=10s --retries=90 CMD \
+  curl --fail -X GET localhost:${PUPPETBOARD_PORT} \
+  |  grep -q 'Live from PuppetDB' \
+  || exit 1
 
 COPY Dockerfile /
