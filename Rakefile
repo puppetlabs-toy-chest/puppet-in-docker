@@ -18,7 +18,8 @@ NO_CACHE = ENV['DOCKER_NO_CACHE'] || false
 TAG = ENV['DOCKER_IMAGE_TAG'] || 'latest'
 NAMESPACE = ENV['DOCKER_NAMESPACE'] || 'org.label-schema'
 
-IMAGES = Dir.glob('*').select { |f| File.directory?(f) && File.exist?("#{f}/Dockerfile") && !File.exist?("#{f}/.ignore") }
+unsorted_images = Dir.glob('*').select { |f| File.directory?(f) && File.exist?("#{f}/Dockerfile") && !File.exist?("#{f}/.ignore") }
+IMAGES = unsorted_images.sort_by { |e| [['puppet-agent-ubuntu', 'puppetserver-standalone'].include?(e) ? 0 : 1, e] }
 
 MICROBADGER_TOKENS = {
   'puppet-agent'            => 'n4wMgsk5mHUoJM1IpygaYiDeTwc=',
@@ -180,18 +181,19 @@ task :update_base_images do
   end
 end
 
-%i[test lint build publish rev pull update_microbadger].each do |task_name|
+%i[test lint publish rev pull update_microbadger].each do |task_name|
   desc "Run #{task_name} for all images in repository in parallel"
   multitask task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
 
-%i[spec manifesto].each do |task_name|
+%i[spec build manifesto].each do |task_name|
   desc "Run #{task_name} for all images in repository"
   task task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
 
 task default: %i[
   rubocop
+  build
   lint
   spec
 ]
