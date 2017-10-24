@@ -14,6 +14,11 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y git && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN /opt/puppetlabs/puppet/bin/gem install r10k:"$R10K_VERSION"
 
 ENTRYPOINT ["/opt/puppetlabs/puppet/bin/r10k"]
