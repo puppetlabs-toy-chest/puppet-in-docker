@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_SERVER_VERSION="5.1.0" DUMB_INIT_VERSION="1.2.0" UBUNTU_CODENAME="xenial" PUPPETSERVER_JAVA_ARGS="-Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH PUPPET_HEALTHCHECK_ENVIRONMENT="production"
+ENV PUPPET_SERVER_VERSION="5.1.3" DUMB_INIT_VERSION="1.2.0" UBUNTU_CODENAME="xenial" PUPPETSERVER_JAVA_ARGS="-Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH PUPPET_HEALTHCHECK_ENVIRONMENT="production"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
@@ -9,8 +9,8 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_SERVER_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="acabd767fa9587b6fcb918a63b1016bf01ae3535" \
-      org.label-schema.build-date="2017-10-24T08:56:08Z" \
+      org.label-schema.vcs-ref="897dbb17ad2194153ef09e5e9b684f17ceb019a2" \
+      org.label-schema.build-date="2017-10-24T11:26:06Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
@@ -22,7 +22,7 @@ RUN apt-get update && \
     dpkg -i dumb-init_"$DUMB_INIT_VERSION"_amd64.deb && \
     rm puppet5-release-"$UBUNTU_CODENAME".deb dumb-init_"$DUMB_INIT_VERSION"_amd64.deb && \
     apt-get update && \
-    apt-get install --no-install-recommends -y puppetserver="$PUPPET_SERVER_VERSION"-1puppetlabs1 && \
+    apt-get install --no-install-recommends git -y puppetserver="$PUPPET_SERVER_VERSION"-1"$UBUNTU_CODENAME" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     gem install --no-rdoc --no-ri r10k

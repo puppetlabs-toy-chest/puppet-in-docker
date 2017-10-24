@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_VERSION="5.2.0" FACTER_VERSION="2.5.1"
+ENV PUPPET_VERSION="5.3.2" FACTER_VERSION="2.5.1"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
@@ -9,8 +9,8 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="acabd767fa9587b6fcb918a63b1016bf01ae3535" \
-      org.label-schema.build-date="2017-10-24T08:55:48Z" \
+      org.label-schema.vcs-ref="897dbb17ad2194153ef09e5e9b684f17ceb019a2" \
+      org.label-schema.build-date="2017-10-24T11:26:06Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
