@@ -110,12 +110,12 @@ IMAGES.each do |image|
       path = "#{REPOSITORY}/#{image}"
       if version
         info "Pushing #{path}:#{version} to Docker Hub"
-        sh "docker push '#{path}:#{version}'"
+        sh "docker push #{path}:#{version}"
       else
         warn "No version specified in Dockerfile for #{path}"
       end
       info "Pushing #{path}:latest to Docker Hub"
-      sh "docker push '#{path}:latest'"
+      sh "docker push #{path}:latest"
     end
 
     desc 'Publish docker image'
