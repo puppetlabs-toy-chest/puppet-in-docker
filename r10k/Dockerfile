@@ -16,6 +16,9 @@ LABEL org.label-schema.vendor="Puppet" \
 
 RUN /opt/puppetlabs/puppet/bin/gem install r10k:"$R10K_VERSION"
 
+RUN ["apt-get","update"]
+RUN ["apt-get","install","git","-y"]
+
 ENTRYPOINT ["/opt/puppetlabs/puppet/bin/r10k"]
 CMD ["help"]
 
