@@ -14,14 +14,14 @@ LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
-RUN apt-get update && \
+RUN apt-get update -y && \
     apt-get install -y wget=1.17.1-1ubuntu1 && \
     wget https://apt.puppetlabs.com/puppet5-release-"$UBUNTU_CODENAME".deb && \
     wget https://github.com/Yelp/dumb-init/releases/download/v"$DUMB_INIT_VERSION"/dumb-init_"$DUMB_INIT_VERSION"_amd64.deb && \
     dpkg -i puppet5-release-"$UBUNTU_CODENAME".deb && \
     dpkg -i dumb-init_"$DUMB_INIT_VERSION"_amd64.deb && \
     rm puppet5-release-"$UBUNTU_CODENAME".deb dumb-init_"$DUMB_INIT_VERSION"_amd64.deb && \
-    apt-get update && \
+    apt-get update -y && \
     apt-get install --no-install-recommends git -y puppetserver="$PUPPET_SERVER_VERSION"-1"$UBUNTU_CODENAME" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
