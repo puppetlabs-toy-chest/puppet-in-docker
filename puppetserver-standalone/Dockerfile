@@ -25,6 +25,7 @@ RUN apt-get update && \
     apt-get install --no-install-recommends git -y puppetserver="$PUPPET_SERVER_VERSION"-1"$UBUNTU_CODENAME" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    /opt/puppetlabs/bin/puppetserver gem install --no-rdoc --no-ri hiera-eyaml && \
     gem install --no-rdoc --no-ri r10k
 
 COPY puppetserver /etc/default/puppetserver
