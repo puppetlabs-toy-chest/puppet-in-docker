@@ -1,5 +1,5 @@
 FROM puppet/puppet-agent-ubuntu:5.4.0
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
+MAINTAINER Puppet Release Team "release@puppet.com"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \

@@ -1,5 +1,5 @@
 FROM postgres:9.6.8
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
+MAINTAINER Puppet Release Team "release@puppet.com"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \

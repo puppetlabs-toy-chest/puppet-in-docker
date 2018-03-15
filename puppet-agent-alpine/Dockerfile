@@ -1,5 +1,5 @@
 FROM alpine:3.4
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
+MAINTAINER Puppet Release Team "release@puppet.com"
 
 ENV PUPPET_VERSION="5.4.0" FACTER_VERSION="2.5.1"
 

@@ -1,5 +1,5 @@
 FROM puppet/puppet-agent-ubuntu:5.4.0
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
+MAINTAINER Puppet Release Team "release@puppet.com"
 
 ENV R10K_VERSION="2.5.5"
 

@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
+MAINTAINER Puppet Release Team "release@puppet.com"
 
 ENV PUPPET_AGENT_VERSION="5.4.0"
 

@@ -1,5 +1,5 @@
 FROM alpine:3.4
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
+MAINTAINER Puppet Release Team "release@puppet.com"
 
 ENV PUPPET_BOARD_VERSION="0.2.2" \
     GUNICORN_VERSION="19.7.1" \

@@ -1,5 +1,5 @@
 FROM puppet/puppetserver-standalone:5.2.0
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
+MAINTAINER Puppet Release Team "release@puppet.com"
 
 ENV PUPPETDB_TERMINUS_VERSION="5.2.0"
 
