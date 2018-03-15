@@ -1,7 +1,7 @@
 FROM debian:8
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_AGENT_VERSION="5.3.2" DEBIAN_CODENAME="jessie"
+ENV PUPPET_AGENT_VERSION="5.4.0" DEBIAN_CODENAME="stretch"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \

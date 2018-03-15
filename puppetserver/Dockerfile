@@ -1,7 +1,7 @@
-FROM puppet/puppetserver-standalone:5.1.3
+FROM puppet/puppetserver-standalone:5.2.0
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPETDB_TERMINUS_VERSION="5.1.1"
+ENV PUPPETDB_TERMINUS_VERSION="5.2.0"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
