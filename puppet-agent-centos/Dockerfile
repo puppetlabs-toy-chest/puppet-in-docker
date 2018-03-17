@@ -1,7 +1,7 @@
 FROM centos:7
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_AGENT_VERSION="5.3.2"
+ENV PUPPET_AGENT_VERSION="5.4.0"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \

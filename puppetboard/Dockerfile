@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_BOARD_VERSION="0.2.2" \
+ENV PUPPET_BOARD_VERSION="0.3.0" \
     GUNICORN_VERSION="19.7.1" \
     PUPPETBOARD_PORT="8000"
 

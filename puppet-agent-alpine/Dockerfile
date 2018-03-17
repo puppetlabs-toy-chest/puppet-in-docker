@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_VERSION="5.3.2" FACTER_VERSION="2.5.1"
+ENV PUPPET_VERSION="5.4.0" FACTER_VERSION="2.5.1"
 
 LABEL org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \

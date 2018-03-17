@@ -1,4 +1,4 @@
-FROM puppet/puppet-agent-ubuntu:5.3.2
+FROM puppet/puppet-agent-ubuntu:5.4.0
 MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
 LABEL org.label-schema.vendor="Puppet" \
