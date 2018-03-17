@@ -1,9 +1,9 @@
 FROM puppet/puppet-agent-ubuntu:5.4.0
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
 ENV PUPPET_INVENTORY_VERSION="0.4.0"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Gareth Rushgrove <gareth@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Inventory" \
       org.label-schema.license="Apache-2.0" \

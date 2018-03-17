@@ -1,11 +1,10 @@
 FROM alpine:3.4
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
 ENV PUPPET_BOARD_VERSION="0.3.0" \
-    GUNICORN_VERSION="19.7.1" \
-    PUPPETBOARD_PORT="8000"
+    GUNICORN_VERSION="19.7.1" 
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Gareth Rushgrove <gareth@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppetboard" \
       org.label-schema.license="Apache-2.0" \
@@ -23,15 +22,15 @@ RUN pip install puppetboard=="$PUPPET_BOARD_VERSION" gunicorn=="$GUNICORN_VERSIO
 
 COPY wsgi.py settings.py /var/www/puppetboard/
 
-EXPOSE $PUPPETBOARD_PORT
+EXPOSE 8000
 
 WORKDIR /var/www/puppetboard
 
-CMD /usr/bin/gunicorn -b 0.0.0.0:${PUPPETBOARD_PORT} --access-logfile=/dev/stdout wsgi:application
+CMD /usr/bin/gunicorn -b 0.0.0.0:8000 --access-logfile=/dev/stdout wsgi:application
 
 # Health check
 HEALTHCHECK --interval=10s --timeout=10s --retries=90 CMD \
-  curl --fail -X GET localhost:${PUPPETBOARD_PORT} \
+  curl --fail -X GET localhost:8000 \
   |  grep -q 'Live from PuppetDB' \
   || exit 1
 

@@ -1,9 +1,9 @@
 FROM alpine:3.4
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
 ENV PUPPET_EXPLORER_VERSION="2.0.0"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Gareth Rushgrove <gareth@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Explorer" \
       org.label-schema.license="Apache-2.0" \
