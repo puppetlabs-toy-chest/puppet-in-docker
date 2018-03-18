@@ -1,11 +1,11 @@
 FROM alpine:3.4
-MAINTAINER Puppet Release Team "release@puppet.com"
 
 ENV PUPPET_BOARD_VERSION="0.2.2" \
     GUNICORN_VERSION="19.7.1" \
     PUPPETBOARD_PORT="8000"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppetboard" \
       org.label-schema.license="Apache-2.0" \

@@ -1,7 +1,7 @@
 FROM puppet/puppet-agent-ubuntu:5.4.0
-MAINTAINER Puppet Release Team "release@puppet.com"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Facter" \
       org.label-schema.license="Apache-2.0" \
