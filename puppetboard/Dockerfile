@@ -1,8 +1,7 @@
 FROM alpine:3.4
 
 ENV PUPPET_BOARD_VERSION="0.2.2" \
-    GUNICORN_VERSION="19.7.1" \
-    PUPPETBOARD_PORT="8000"
+    GUNICORN_VERSION="19.7.1"
 
 LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
@@ -23,15 +22,15 @@ RUN pip install puppetboard=="$PUPPET_BOARD_VERSION" gunicorn=="$GUNICORN_VERSIO
 
 COPY wsgi.py settings.py /var/www/puppetboard/
 
-EXPOSE $PUPPETBOARD_PORT
+EXPOSE 8000
 
 WORKDIR /var/www/puppetboard
 
-CMD /usr/bin/gunicorn -b 0.0.0.0:${PUPPETBOARD_PORT} --access-logfile=/dev/stdout wsgi:application
+CMD /usr/bin/gunicorn -b 0.0.0.0:8000 --access-logfile=/dev/stdout wsgi:application
 
 # Health check
 HEALTHCHECK --interval=10s --timeout=10s --retries=90 CMD \
-  curl --fail -X GET localhost:${PUPPETBOARD_PORT} \
+  curl --fail -X GET localhost:8000\
   |  grep -q 'Live from PuppetDB' \
   || exit 1
 
