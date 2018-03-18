@@ -1,9 +1,9 @@
 FROM debian:8
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_AGENT_VERSION="5.3.2" DEBIAN_CODENAME="jessie"
+ENV PUPPET_AGENT_VERSION="5.4.0" DEBIAN_CODENAME="jessie"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Gareth Rushgrove <gareth@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Agent (Debian)" \
       org.label-schema.license="Apache-2.0" \
