@@ -20,7 +20,7 @@ RUN apk add --no-cache --update ca-certificates curl wget && \
 
 RUN curl --silent --show-error --fail --location \
       --header "Accept: application/tar+gzip, application/x-gzip, application/octet-stream" -o - \
-      "https://caddyserver.com/download/linux/amd64?plugins=http.prometheus,http.realip" \
+      "https://caddyserver.com/download/linux/amd64?plugins=http.prometheus,http.realip&license=personal" \
     | tar --no-same-owner -C /usr/bin/ -xz caddy \
  && chmod 0755 /usr/bin/caddy \
  && /usr/bin/caddy -version
