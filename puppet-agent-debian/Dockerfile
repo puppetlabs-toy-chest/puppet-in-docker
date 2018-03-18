@@ -1,4 +1,4 @@
-FROM debian:8
+FROM debian:9
 MAINTAINER Puppet Release Team "release@puppet.com"
 
 ENV PUPPET_AGENT_VERSION="5.4.0" DEBIAN_CODENAME="stretch"
