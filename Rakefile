@@ -11,7 +11,7 @@ require 'table_print'
 require_relative 'lib/puppet/dockerfile'
 require_relative 'lib/tableprint/formatters'
 
-include Puppet::Dockerfile
+include Puppet::Dockerfile # rubocop:disable Style/MixinUsage
 
 REPOSITORY = ENV['DOCKER_REPOSITORY'] || 'puppet'
 NO_CACHE = ENV['DOCKER_NO_CACHE'] || false
