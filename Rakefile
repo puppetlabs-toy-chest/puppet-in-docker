@@ -84,6 +84,11 @@ IMAGES.each do |image|
       sh "docker run --rm -i lukasmartinelli/hadolint hadolint --ignore DL3008 --ignore DL4001 - < #{image}/Dockerfile"
     end
 
+    desc 'Get the application version from the Dockerfile'
+    task :get_version do
+      puts "#{get_version_from_env(image)}"
+    end
+
     desc 'Build docker image'
     task build: :docker do
       version = get_version_from_env(image)
