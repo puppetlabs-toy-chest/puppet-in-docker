@@ -81,7 +81,7 @@ IMAGES.each do |image|
       info "Running Hadolint to check the style of #{image}/Dockerfile"
       # Ignore the need to pin package versions
       # Ignore use of curl and wget
-      sh "docker run --rm -i lukasmartinelli/hadolint hadolint --ignore DL3008 --ignore DL4001 - < #{image}/Dockerfile"
+      sh "docker run --rm -i lukasmartinelli/hadolint hadolint --ignore DL3008 --ignore DL4000 --ignore DL4001 - < #{image}/Dockerfile"
     end
 
     desc 'Get the application version from the Dockerfile'
