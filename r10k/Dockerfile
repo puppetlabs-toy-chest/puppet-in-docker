@@ -1,9 +1,9 @@
-FROM puppet/puppet-agent-ubuntu:5.3.2
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
+FROM puppet/puppet-agent-ubuntu:5.4.0
 
 ENV R10K_VERSION="2.5.5"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="r10k" \
       org.label-schema.license="Apache-2.0" \

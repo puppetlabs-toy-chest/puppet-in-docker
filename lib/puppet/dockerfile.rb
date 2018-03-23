@@ -51,7 +51,7 @@ module Puppet # :nodoc:
     def get_value_from_label(image, value)
       labels = JSON.parse(`docker inspect -f "{{json .Config.Labels }}" #{REPOSITORY}/#{image}`)
       labels["#{NAMESPACE}.#{value.tr('_', '-')}"]
-    rescue # rubocop:disable Lint/RescueWithoutErrorClass
+    rescue # rubocop:disable Style/RescueStandardError
       nil
     end
 

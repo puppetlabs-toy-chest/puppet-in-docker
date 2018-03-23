@@ -1,9 +1,9 @@
 FROM ubuntu:16.04
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_AGENT_VERSION="5.3.2" UBUNTU_CODENAME="xenial"
+ENV PUPPET_AGENT_VERSION="5.4.0" UBUNTU_CODENAME="xenial"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Agent (Ubuntu)" \
       org.label-schema.license="Apache-2.0" \

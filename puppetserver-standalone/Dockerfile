@@ -1,9 +1,9 @@
 FROM ubuntu:16.04
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
 
-ENV PUPPET_SERVER_VERSION="5.1.3" DUMB_INIT_VERSION="1.2.0" UBUNTU_CODENAME="xenial" PUPPETSERVER_JAVA_ARGS="-Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH PUPPET_HEALTHCHECK_ENVIRONMENT="production"
+ENV PUPPET_SERVER_VERSION="5.2.0" DUMB_INIT_VERSION="1.2.1" UBUNTU_CODENAME="xenial" PUPPETSERVER_JAVA_ARGS="-Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH PUPPET_HEALTHCHECK_ENVIRONMENT="production"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Server (No PuppetDB)" \
       org.label-schema.license="Apache-2.0" \

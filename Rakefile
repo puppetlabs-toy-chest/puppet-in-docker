@@ -11,7 +11,7 @@ require 'table_print'
 require_relative 'lib/puppet/dockerfile'
 require_relative 'lib/tableprint/formatters'
 
-include Puppet::Dockerfile
+include Puppet::Dockerfile # rubocop:disable Style/MixinUsage
 
 REPOSITORY = ENV['DOCKER_REPOSITORY'] || 'puppet'
 NO_CACHE = ENV['DOCKER_NO_CACHE'] || false
@@ -81,7 +81,12 @@ IMAGES.each do |image|
       info "Running Hadolint to check the style of #{image}/Dockerfile"
       # Ignore the need to pin package versions
       # Ignore use of curl and wget
-      sh "docker run --rm -i lukasmartinelli/hadolint hadolint --ignore DL3008 --ignore DL4001 - < #{image}/Dockerfile"
+      sh "docker run --rm -i lukasmartinelli/hadolint hadolint --ignore DL3008 --ignore DL4000 --ignore DL4001 - < #{image}/Dockerfile"
+    end
+
+    desc 'Get the application version from the Dockerfile'
+    task :get_version do
+      puts "#{get_version_from_env(image)}"
     end
 
     desc 'Build docker image'
@@ -176,7 +181,7 @@ end
 
 task :update_base_images do
   desc 'Update base images used in set'
-  ['ubuntu:16.04', 'centos:7', 'alpine:3.4', 'debian:8', 'postgres:9.5.3'].each do |image|
+  ['ubuntu:16.04', 'centos:7', 'alpine:3.4', 'debian:9', 'postgres:9.6.8'].each do |image|
     sh "docker pull #{image}"
   end
 end
