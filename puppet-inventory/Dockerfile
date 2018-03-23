@@ -1,4 +1,4 @@
-FROM puppet/puppet-agent-ubuntu:5.3.2
+FROM puppet/puppet-agent-ubuntu:5.5.0
 
 ENV PUPPET_INVENTORY_VERSION="0.4.0"
 

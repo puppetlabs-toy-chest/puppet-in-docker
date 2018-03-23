@@ -1,6 +1,6 @@
 FROM centos:7
 
-ENV PUPPET_AGENT_VERSION="5.4.0"
+ENV PUPPET_AGENT_VERSION="5.5.0"
 
 LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \

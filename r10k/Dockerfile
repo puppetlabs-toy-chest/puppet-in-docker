@@ -1,4 +1,4 @@
-FROM puppet/puppet-agent-ubuntu:5.4.0
+FROM puppet/puppet-agent-ubuntu:5.5.0
 
 ENV R10K_VERSION="2.5.5"
 
