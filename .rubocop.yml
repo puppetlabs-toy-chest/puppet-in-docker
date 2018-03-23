@@ -3,3 +3,6 @@ Metrics/LineLength:
 
 Metrics/BlockLength:
   Max: 100
+
+Style/UnneededInterpolation:
+  Enabled: false
