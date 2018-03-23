@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-ENV PUPPET_VERSION="5.4.0" FACTER_VERSION="2.5.1"
+ENV PUPPET_VERSION="5.5.0" FACTER_VERSION="2.5.1"
 
 LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
@@ -9,8 +9,8 @@ LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="897dbb17ad2194153ef09e5e9b684f17ceb019a2" \
-      org.label-schema.build-date="2017-10-24T11:26:06Z" \
+      org.label-schema.vcs-ref="be1312133f78696751e77e6c19314a9617666bfc" \
+      org.label-schema.build-date="2018-03-23T17:12:30Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
