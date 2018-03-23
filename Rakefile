@@ -11,7 +11,7 @@ require 'table_print'
 require_relative 'lib/puppet/dockerfile'
 require_relative 'lib/tableprint/formatters'
 
-include Puppet::Dockerfile
+include Puppet::Dockerfile # rubocop:disable Style/MixinUsage
 
 REPOSITORY = ENV['DOCKER_REPOSITORY'] || 'puppet'
 NO_CACHE = ENV['DOCKER_NO_CACHE'] || false
@@ -181,7 +181,7 @@ end
 
 task :update_base_images do
   desc 'Update base images used in set'
-  ['ubuntu:16.04', 'centos:7', 'alpine:3.4', 'debian:8', 'postgres:9.5.3'].each do |image|
+  ['ubuntu:16.04', 'centos:7', 'alpine:3.4', 'debian:9', 'postgres:9.6.8'].each do |image|
     sh "docker pull #{image}"
   end
 end

@@ -1,9 +1,9 @@
 FROM alpine:3.4
-MAINTAINER Puppet Release Team "release@puppet.com"
 
 ENV PUPPET_VERSION="5.4.0" FACTER_VERSION="2.5.1"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Agent (Alpine)" \
       org.label-schema.license="Apache-2.0" \

@@ -1,7 +1,7 @@
 FROM postgres:9.6.8
-MAINTAINER Puppet Release Team "release@puppet.com"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="PostgreSQL instance for PuppetDB" \
       org.label-schema.license="Apache-2.0" \

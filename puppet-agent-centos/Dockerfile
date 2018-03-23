@@ -1,9 +1,9 @@
 FROM centos:7
-MAINTAINER Puppet Release Team "release@puppet.com"
 
 ENV PUPPET_AGENT_VERSION="5.4.0"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Agent (Centos)" \
       org.label-schema.license="Apache-2.0" \

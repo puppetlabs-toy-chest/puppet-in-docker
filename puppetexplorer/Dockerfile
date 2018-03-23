@@ -1,9 +1,9 @@
 FROM alpine:3.4
-MAINTAINER Puppet Release Team "release@puppet.com"
 
 ENV PUPPET_EXPLORER_VERSION="2.0.0"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Explorer" \
       org.label-schema.license="Apache-2.0" \
@@ -20,7 +20,7 @@ RUN apk add --no-cache --update ca-certificates curl wget && \
 
 RUN curl --silent --show-error --fail --location \
       --header "Accept: application/tar+gzip, application/x-gzip, application/octet-stream" -o - \
-      "https://caddyserver.com/download/linux/amd64?plugins=http.prometheus,http.realip" \
+      "https://caddyserver.com/download/linux/amd64?plugins=http.prometheus,http.realip&license=personal" \
     | tar --no-same-owner -C /usr/bin/ -xz caddy \
  && chmod 0755 /usr/bin/caddy \
  && /usr/bin/caddy -version
