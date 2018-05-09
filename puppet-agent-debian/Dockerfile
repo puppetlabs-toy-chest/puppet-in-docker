@@ -1,6 +1,6 @@
 FROM debian:9
 
-ENV PUPPET_AGENT_VERSION="5.5.0" DEBIAN_CODENAME="stretch"
+ENV PUPPET_AGENT_VERSION="5.5.1" DEBIAN_CODENAME="stretch"
 
 LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
@@ -9,8 +9,8 @@ LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_AGENT_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="be1312133f78696751e77e6c19314a9617666bfc" \
-      org.label-schema.build-date="2018-03-23T17:12:30Z" \
+      org.label-schema.vcs-ref="b75674e1fbf52f7821f7900ab22a19f1a10cafdb" \
+      org.label-schema.build-date="2018-05-09T20:10:23Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
