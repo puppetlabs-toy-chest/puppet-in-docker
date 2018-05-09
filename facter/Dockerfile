@@ -1,4 +1,4 @@
-FROM puppet/puppet-agent-ubuntu:5.5.0
+FROM puppet/puppet-agent-ubuntu:5.5.1
 
 LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \

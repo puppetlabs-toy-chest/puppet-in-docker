@@ -1,6 +1,6 @@
 FROM debian:9
 
-ENV PUPPET_AGENT_VERSION="5.5.0" DEBIAN_CODENAME="stretch"
+ENV PUPPET_AGENT_VERSION="5.5.1" DEBIAN_CODENAME="stretch"
 
 LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \

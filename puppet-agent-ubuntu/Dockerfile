@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ENV PUPPET_AGENT_VERSION="5.5.0" UBUNTU_CODENAME="xenial"
+ENV PUPPET_AGENT_VERSION="5.5.1" UBUNTU_CODENAME="xenial"
 
 LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
