@@ -2,7 +2,7 @@ FROM puppet/puppet-agent-ubuntu:5.5.1
 
 ENV PUPPET_INVENTORY_VERSION="0.4.0"
 
-LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+LABEL org.label-schema.maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Inventory" \

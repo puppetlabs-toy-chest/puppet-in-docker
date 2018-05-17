@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 ENV PUPPETDB_VERSION="5.2.2" PUPPET_AGENT_VERSION="5.5.1" DUMB_INIT_VERSION="1.2.1" UBUNTU_CODENAME="xenial" PUPPETDB_DATABASE_CONNECTION="//postgres:5432/puppetdb" PUPPETDB_USER=puppetdb PUPPETDB_PASSWORD=puppetdb PUPPETDB_JAVA_ARGS="-Djava.net.preferIPv4Stack=true -Xms256m -Xmx256m" PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
 
-LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+LABEL org.label-schema.maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="PuppetDB" \

@@ -2,7 +2,7 @@ FROM debian:9
 
 ENV PUPPET_AGENT_VERSION="5.5.1" DEBIAN_CODENAME="stretch"
 
-LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+LABEL org.label-schema.maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Agent (Debian)" \

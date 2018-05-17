@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 ENV PUPPET_AGENT_VERSION="5.5.1" UBUNTU_CODENAME="xenial"
 
-LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+LABEL org.label-schema.maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Agent (Ubuntu)" \

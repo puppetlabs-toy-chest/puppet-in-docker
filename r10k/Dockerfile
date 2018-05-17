@@ -2,7 +2,7 @@ FROM puppet/puppet-agent-ubuntu:5.5.1
 
 ENV R10K_VERSION="2.5.5"
 
-LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+LABEL org.label-schema.maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="r10k" \
