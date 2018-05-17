@@ -23,11 +23,11 @@ You can find published versions of these images on [Docker Hub](https://hub.dock
 * [puppet/puppetserver](https://hub.docker.com/r/puppet/puppetserver/)
 * [puppet/puppet-agent-alpine](https://hub.docker.com/r/puppet/puppet-agent-alpine/)
 * [puppet/puppetdb-postgres](https://hub.docker.com/r/puppet/puppetdb-postgres/)
-* [puppet/puppetboard](https://hub.docker.com/r/puppet/puppetboard/)
+* [puppet/puppetboard](https://hub.docker.com/r/puppet/puppetboard/) -- deprecated
 * [puppet/puppetdb](https://hub.docker.com/r/puppet/puppetdb/)
 * [puppet/puppet-agent-centos](https://hub.docker.com/r/puppet/puppet-agent-centos/)
 * [puppet/puppet-agent-debian](https://hub.docker.com/r/puppet/puppet-agent-debian/)
-* [puppet/puppet-inventory](https://hub.docker.com/r/puppet/puppet-inventory/)
+* [puppet/puppet-inventory](https://hub.docker.com/r/puppet/puppet-inventory/) -- deprecated
 * [puppet/r10k](https://hub.docker.com/r/puppet/r10k/)
 
 
@@ -93,11 +93,17 @@ The resulting images expose a label-based API for gathering information about th
 ```
 $ docker inspect -f "{{json .Config.Labels }}" puppet/puppet-agent-ubuntu | jq
 {
-  "com.puppet.build-time": "2016-05-09T12:14:22Z",
-  "com.puppet.dockerfile": "/Dockerfile",
-  "com.puppet.git.repo": "https://github.com/puppetlabs/dockerfiles",
-  "com.puppet.git.sha": "33f00f35d7275a6ca2a538650b9530734aa66929",
-  "com.puppet.version": "1.4.1"
+  "org.label-schema.dockerfile": "/Dockerfile",
+  "org.label-schema.maintainer": "Puppet Release Team <release@puppet.com>",
+  "org.label-schema.build-date": "2018-05-09T20:06:11Z",
+  "org.label-schema.license": "Apache-2.0",
+  "org.label-schema.name": "Puppet Agent (Ubuntu)",
+  "org.label-schema.schema-version": "1.0",
+  "org.label-schema.url": "https://github.com/puppetlabs/puppet-in-docker",
+  "org.label-schema.vcs-ref": "b75674e1fbf52f7821f7900ab22a19f1a10cafdb",
+  "org.label-schema.vcs-url": "https://github.com/puppetlabs/puppet-in-docker",
+  "org.label-schema.vendor": "Puppet",
+  "org.label-schema.version": "5.5.1"
 }
 ```
 
@@ -186,3 +192,7 @@ To add additional images to the repository, create a folder in the root of the r
 This repository is maintained by the Puppet Release Engineering team <release@puppet.com>.
 
 Individual images may have separate maintainers as mentioned in the relevant Dockerfiles.
+
+## Issues
+
+File issues and feature requests in the [Community Package Repository (CPR) project](https://tickets.puppet.com/browse/CPR) with the 'Container' component.
