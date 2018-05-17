@@ -12,7 +12,7 @@ LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vcs-ref="b75674e1fbf52f7821f7900ab22a19f1a10cafdb" \
       org.label-schema.build-date="2018-05-09T20:11:01Z" \
       org.label-schema.schema-version="1.0" \
-      com.puppet.dockerfile="/Dockerfile"
+      org.label-schema.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
     apt-get install -y wget=1.17.1-1ubuntu1 && \
