@@ -2,7 +2,7 @@ FROM puppet/puppetserver-standalone:5.3.1
 
 ENV PUPPETDB_TERMINUS_VERSION="5.2.2"
 
-LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+LABEL org.label-schema.maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Server" \
@@ -12,7 +12,7 @@ LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vcs-ref="b75674e1fbf52f7821f7900ab22a19f1a10cafdb" \
       org.label-schema.build-date="2018-05-09T20:11:06Z" \
       org.label-schema.schema-version="1.0" \
-      com.puppet.dockerfile="/Dockerfile"
+      org.label-schema.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y puppetdb-termini="$PUPPETDB_TERMINUS_VERSION"-1xenial && \

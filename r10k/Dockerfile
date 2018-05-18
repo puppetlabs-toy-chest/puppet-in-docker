@@ -2,7 +2,7 @@ FROM puppet/puppet-agent-ubuntu:5.5.1
 
 ENV R10K_VERSION="2.5.5"
 
-LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+LABEL org.label-schema.maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="r10k" \
@@ -12,7 +12,7 @@ LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vcs-ref="b75674e1fbf52f7821f7900ab22a19f1a10cafdb" \
       org.label-schema.build-date="2018-05-09T20:11:15Z" \
       org.label-schema.schema-version="1.0" \
-      com.puppet.dockerfile="/Dockerfile"
+      org.label-schema.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y git && \
