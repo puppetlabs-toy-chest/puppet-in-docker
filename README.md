@@ -139,7 +139,7 @@ This is a simple interface to run `docker build` and creates both a latest and a
 
 The repository provides two types of tests:
 
-1. Validation of the Dockerfile using [Hadolint](https://github.com/lukasmartinelli/hadolint)
+1. Validation of the Dockerfile using [Hadolint](https://github.com/hadolint/hadolint)
 2. Acceptance tests of the image using [ServerSpec](http://serverspec.org)
 
 These can be run individually or together. To run them together, use the following command.
