@@ -14,7 +14,7 @@ LABEL maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
-RUN apk add --update \
+RUN apk add --no-cache \
       ca-certificates \
       pciutils \
       ruby \
@@ -22,8 +22,7 @@ RUN apk add --update \
       ruby-rdoc \
       && \
     echo http://dl-4.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
-    apk add --update shadow && \
-    rm -rf /var/cache/apk/* && \
+    apk add --no-cache shadow && \
     gem install puppet:"$PUPPET_VERSION" facter:"$FACTER_VERSION" && \
     /usr/bin/puppet module install puppetlabs-apk
 
