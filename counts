@@ -13,7 +13,6 @@ declare -a arr=(puppet-agent
                 puppetserver
                 puppetdb
                 puppetdb-postgres
-                puppetexplorer
                 puppetboard
                 puppet-inventory
                 )

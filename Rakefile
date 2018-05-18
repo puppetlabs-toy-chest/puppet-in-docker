@@ -1,6 +1,7 @@
 require 'mkmf'
 require 'time'
 require 'net/http'
+require 'securerandom'
 
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
@@ -10,14 +11,15 @@ require 'table_print'
 require_relative 'lib/puppet/dockerfile'
 require_relative 'lib/tableprint/formatters'
 
-include Puppet::Dockerfile
+include Puppet::Dockerfile # rubocop:disable Style/MixinUsage
 
 REPOSITORY = ENV['DOCKER_REPOSITORY'] || 'puppet'
 NO_CACHE = ENV['DOCKER_NO_CACHE'] || false
 TAG = ENV['DOCKER_IMAGE_TAG'] || 'latest'
 NAMESPACE = ENV['DOCKER_NAMESPACE'] || 'org.label-schema'
 
-IMAGES = Dir.glob('*').select { |f| File.directory?(f) && File.exist?("#{f}/Dockerfile") && !File.exist?("#{f}/.ignore") }
+unsorted_images = Dir.glob('*').select { |f| File.directory?(f) && File.exist?("#{f}/Dockerfile") && !File.exist?("#{f}/.ignore") }
+IMAGES = unsorted_images.sort_by { |e| [['puppet-agent-ubuntu', 'puppetserver-standalone'].include?(e) ? 0 : 1, e] }
 
 MICROBADGER_TOKENS = {
   'puppet-agent'            => 'n4wMgsk5mHUoJM1IpygaYiDeTwc=',
@@ -31,7 +33,6 @@ MICROBADGER_TOKENS = {
   'puppetserver-standalone' => 'XpINInOKHSl0ce5dBthyqs_vnxw=',
   'puppetserver'            => 'G0BfSGbPoc9eqAmToDhnv8et5ag=',
   'puppetboard'             => '2bDFb5JXgC6_l3dqHxv64HOZRm0=',
-  'puppetexplorer'          => 'hCiz0KejqgjngwrOoNoi3QrNeEM=',
   'puppet-inventory'        => '-qatAsCRU2aPh2vXrudqj0g6Brs=',
   'r10k'                    => 'SZFceeWZ6Etn83fv_6T8u_lkL8Y='
 }.freeze
@@ -79,7 +80,12 @@ IMAGES.each do |image|
       info "Running Hadolint to check the style of #{image}/Dockerfile"
       # Ignore the need to pin package versions
       # Ignore use of curl and wget
-      sh "docker run --rm -i lukasmartinelli/hadolint hadolint --ignore DL3008 --ignore DL4001 - < #{image}/Dockerfile"
+      sh "docker run --rm -i lukasmartinelli/hadolint hadolint --ignore DL3008 --ignore DL4000 --ignore DL4001 - < #{image}/Dockerfile"
+    end
+
+    desc 'Get the application version from the Dockerfile'
+    task :get_version do
+      puts "#{get_version_from_env(image)}"
     end
 
     desc 'Build docker image'
@@ -108,24 +114,35 @@ IMAGES.each do |image|
       path = "#{REPOSITORY}/#{image}"
       if version
         info "Pushing #{path}:#{version} to Docker Hub"
-        sh "docker push '#{path}:#{version}'"
+        sh "docker push #{path}:#{version}"
       else
         warn "No version specified in Dockerfile for #{path}"
       end
       info "Pushing #{path}:latest to Docker Hub"
-      sh "docker push '#{path}:latest'"
+      sh "docker push #{path}:latest"
     end
 
     desc 'Publish docker image'
     task publish: %i[
       push
       update_microbadger
+      manifesto
     ]
 
     task test: %i[
       lint
       spec
     ]
+
+    task :manifesto do
+      raise 'This task require manifesto to be installed' unless find_executable 'manifesto'
+      name = SecureRandom.hex
+      sh "docker run --name #{name} --rm -d --entrypoint '' #{REPOSITORY}/#{image} /bin/sh -c 'while true; do echo hello world; sleep 1; done'"
+      sh "docker run --rm  -v /var/run/docker.sock:/var/run/docker.sock puppet/lumogon scan #{name} > /tmp/#{name}.json"
+      sh "docker kill #{name}"
+      sh "manifesto put #{REPOSITORY}/#{image} lumogon /tmp/#{name}.json"
+      sh "rm /tmp/#{name}.json"
+    end
 
     desc 'Update Dockerfile label content for new version'
     task :rev do
@@ -163,23 +180,24 @@ end
 
 task :update_base_images do
   desc 'Update base images used in set'
-  ['ubuntu:16.04', 'centos:7', 'alpine:3.4', 'debian:8', 'postgres:9.5.3'].each do |image|
+  ['ubuntu:16.04', 'centos:7', 'alpine:3.4', 'debian:9', 'postgres:9.6.8'].each do |image|
     sh "docker pull #{image}"
   end
 end
 
-%i[test lint build publish rev pull update_microbadger].each do |task_name|
+%i[test lint publish rev pull update_microbadger].each do |task_name|
   desc "Run #{task_name} for all images in repository in parallel"
   multitask task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
 
-[:spec].each do |task_name|
+%i[spec build manifesto].each do |task_name|
   desc "Run #{task_name} for all images in repository"
   task task_name => IMAGES.collect { |image| "#{image}:#{task_name}" }
 end
 
 task default: %i[
   rubocop
+  build
   lint
   spec
 ]

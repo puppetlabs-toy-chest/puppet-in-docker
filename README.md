@@ -17,19 +17,18 @@ If you do find yourself customizing these images, please open issues describing 
 
 You can find published versions of these images on [Docker Hub](https://hub.docker.com/u/puppet):
 
-* [![](https://images.microbadger.com/badges/image/puppet/puppet-agent-ubuntu.svg)](http://microbadger.com/images/puppet/puppet-agent-ubuntu) [![](https://images.microbadger.com/badges/version/puppet/puppet-agent-ubuntu.svg)](http://microbadger.com/images/puppet/puppet-agent-ubuntu) [puppet/puppet-agent-ubuntu](https://hub.docker.com/r/puppet/puppet-agent-ubuntu/)
-* [![](https://images.microbadger.com/badges/image/puppet/puppetserver-standalone.svg)](http://microbadger.com/images/puppet/puppetserver-standalone) [![](https://images.microbadger.com/badges/version/puppet/puppetserver-standalone.svg)](http://microbadger.com/images/puppet/puppetserver-standalone) [puppet/puppetserver-standalone](https://hub.docker.com/r/puppet/puppetserver-standalone/)
-* [![](https://images.microbadger.com/badges/image/puppet/facter.svg)](http://microbadger.com/images/puppet/facter) [![](https://images.microbadger.com/badges/version/puppet/facter.svg)](http://microbadger.com/images/puppet/facter) [puppet/facter](https://hub.docker.com/r/puppet/facter/)
-* [![](https://images.microbadger.com/badges/image/puppet/puppetserver.svg)](http://microbadger.com/images/puppet/puppetserver) [![](https://images.microbadger.com/badges/version/puppet/puppetserver.svg)](http://microbadger.com/images/puppet/puppetserver) [puppet/puppetserver](https://hub.docker.com/r/puppet/puppetserver/)
-* [![](https://images.microbadger.com/badges/image/puppet/puppet-agent-alpine.svg)](http://microbadger.com/images/puppet/puppet-agent-alpine) [![](https://images.microbadger.com/badges/version/puppet/puppet-agent-alpine.svg)](http://microbadger.com/images/puppet/puppet-agent-alpine) [puppet/puppet-agent-alpine](https://hub.docker.com/r/puppet/puppet-agent-alpine/)
-* [![](https://images.microbadger.com/badges/image/puppet/puppetexplorer.svg)](http://microbadger.com/images/puppet/puppetexplorer) [![](https://images.microbadger.com/badges/version/puppet/puppetexplorer.svg)](http://microbadger.com/images/puppet/puppetexplorer) [puppet/puppetexplorer](https://hub.docker.com/r/puppet/puppetexplorer/)
-* [![](https://images.microbadger.com/badges/image/puppet/puppetdb-postgres.svg)](http://microbadger.com/images/puppet/puppetdb-postgres) [![](https://images.microbadger.com/badges/version/puppet/puppetdb-postgres.svg)](http://microbadger.com/images/puppet/puppetdb-postgres) [puppet/puppetdb-postgres](https://hub.docker.com/r/puppet/puppetdb-postgres/)
-* [![](https://images.microbadger.com/badges/image/puppet/puppetboard.svg)](http://microbadger.com/images/puppet/puppetboard) [![](https://images.microbadger.com/badges/version/puppet/puppetboard.svg)](http://microbadger.com/images/puppet/puppetboard) [puppet/puppetboard](https://hub.docker.com/r/puppet/puppetboard/)
-* [![](https://images.microbadger.com/badges/image/puppet/puppetdb.svg)](http://microbadger.com/images/puppet/puppetdb) [![](https://images.microbadger.com/badges/version/puppet/puppetdb.svg)](http://microbadger.com/images/puppet/puppetdb) [puppet/puppetdb](https://hub.docker.com/r/puppet/puppetdb/)
-* [![](https://images.microbadger.com/badges/image/puppet/puppet-agent-centos.svg)](http://microbadger.com/images/puppet/puppet-agent-centos) [![](https://images.microbadger.com/badges/version/puppet/puppet-agent-centos.svg)](http://microbadger.com/images/puppet/puppet-agent-centos) [puppet/puppet-agent-centos](https://hub.docker.com/r/puppet/puppet-agent-centos/)
-* [![](https://images.microbadger.com/badges/image/puppet/puppet-agent-debian.svg)](http://microbadger.com/images/puppet/puppet-agent-debian) [![](https://images.microbadger.com/badges/version/puppet/puppet-agent-debian.svg)](http://microbadger.com/images/puppet/puppet-agent-debian) [puppet/puppet-agent-debian](https://hub.docker.com/r/puppet/puppet-agent-debian/)
-* [![](https://images.microbadger.com/badges/image/puppet/puppet-inventory.svg)](http://microbadger.com/images/puppet/puppet-inventory) [![](https://images.microbadger.com/badges/version/puppet/puppet-inventory.svg)](http://microbadger.com/images/puppet/puppet-inventory) [puppet/puppet-inventory](https://hub.docker.com/r/puppet/puppet-inventory/)
-* [![](https://images.microbadger.com/badges/image/puppet/r10k.svg)](http://microbadger.com/images/puppet/r10k) [![](https://images.microbadger.com/badges/version/puppet/r10k.svg)](http://microbadger.com/images/puppet/r10k) [puppet/r10k](https://hub.docker.com/r/puppet/r10k/)
+* [puppet/puppet-agent-ubuntu](https://hub.docker.com/r/puppet/puppet-agent-ubuntu/)
+* [puppet/puppetserver-standalone](https://hub.docker.com/r/puppet/puppetserver-standalone/)
+* [puppet/facter](https://hub.docker.com/r/puppet/facter/)
+* [puppet/puppetserver](https://hub.docker.com/r/puppet/puppetserver/)
+* [puppet/puppet-agent-alpine](https://hub.docker.com/r/puppet/puppet-agent-alpine/)
+* [puppet/puppetdb-postgres](https://hub.docker.com/r/puppet/puppetdb-postgres/)
+* [puppet/puppetboard](https://hub.docker.com/r/puppet/puppetboard/)
+* [puppet/puppetdb](https://hub.docker.com/r/puppet/puppetdb/)
+* [puppet/puppet-agent-centos](https://hub.docker.com/r/puppet/puppet-agent-centos/)
+* [puppet/puppet-agent-debian](https://hub.docker.com/r/puppet/puppet-agent-debian/)
+* [puppet/puppet-inventory](https://hub.docker.com/r/puppet/puppet-inventory/)
+* [puppet/r10k](https://hub.docker.com/r/puppet/r10k/)
 
 
 ## Image usage
@@ -122,7 +121,6 @@ puppet-agent-ubuntu     | 1.5.0   | ubuntu:16.04                         | 97475
 puppetboard             | 0.1.3   | alpine:3.3                           | 97475979ffe252d33a9df67524b5aa313022cb05 | 2016-05-20T10:01:19Z | Gareth Rushgrove "gareth@puppet.com"
 puppetdb                | 4.1.0   | ubuntu:16.04                         | 97475979ffe252d33a9df67524b5aa313022cb05 | 2016-05-20T10:01:19Z | Gareth Rushgrove "gareth@puppet.com"
 puppetdb-postgres       | 0.1.0   | postgres:9.5.2                       | 97475979ffe252d33a9df67524b5aa313022cb05 | 2016-05-20T10:01:19Z | Gareth Rushgrove "gareth@puppet.com"
-puppetexplorer          | 2.0.0   | alpine:3.3                           | 97475979ffe252d33a9df67524b5aa313022cb05 | 2016-05-20T10:01:19Z | Gareth Rushgrove "gareth@puppet.com"
 puppetserver            | 2.3.2   | puppet/puppetserver-standalone:2.4.0 | 161bca4fed59997fd19581df38678caeefe813bc | 2016-05-16T08:05:27Z | Gareth Rushgrove "gareth@puppet.com"
 puppetserver-standalone | 2.4.0   | ubuntu:16.04                         | 97475979ffe252d33a9df67524b5aa313022cb05 | 2016-05-20T10:01:19Z | Gareth Rushgrove "gareth@puppet.com"
 ```
@@ -185,6 +183,6 @@ To add additional images to the repository, create a folder in the root of the r
 
 ## Maintainers
 
-This repository is maintained by: Gareth Rushgrove <gareth@puppet.com>.
+This repository is maintained by the Puppet Release Engineering team <release@puppet.com>.
 
 Individual images may have separate maintainers as mentioned in the relevant Dockerfiles.

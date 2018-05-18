@@ -1,16 +1,16 @@
-FROM debian:8
-MAINTAINER Gareth Rushgrove "gareth@puppet.com"
+FROM debian:9
 
-ENV PUPPET_AGENT_VERSION="5.0.0" DEBIAN_CODENAME="jessie"
+ENV PUPPET_AGENT_VERSION="5.5.1" DEBIAN_CODENAME="stretch"
 
-LABEL org.label-schema.vendor="Puppet" \
+LABEL maintainer="Puppet Release Team <release@puppet.com>" \
+      org.label-schema.vendor="Puppet" \
       org.label-schema.url="https://github.com/puppetlabs/puppet-in-docker" \
       org.label-schema.name="Puppet Agent (Debian)" \
       org.label-schema.license="Apache-2.0" \
       org.label-schema.version=$PUPPET_AGENT_VERSION \
       org.label-schema.vcs-url="https://github.com/puppetlabs/puppet-in-docker" \
-      org.label-schema.vcs-ref="0e9a4acda83d43f673d96c245b6d859dcae0b7e7" \
-      org.label-schema.build-date="2017-06-30T17:14:08Z" \
+      org.label-schema.vcs-ref="b75674e1fbf52f7821f7900ab22a19f1a10cafdb" \
+      org.label-schema.build-date="2018-05-09T20:10:23Z" \
       org.label-schema.schema-version="1.0" \
       com.puppet.dockerfile="/Dockerfile"
 
