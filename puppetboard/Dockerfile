@@ -1,7 +1,9 @@
-FROM alpine:3.4
+FROM python:2.7-alpine
 
 ENV PUPPET_BOARD_VERSION="0.2.2" \
-    GUNICORN_VERSION="19.7.1"
+    GUNICORN_VERSION="19.7.1" \
+    PUPPETBOARD_PORT="8000" \
+    PUPPETBOARD_SETTINGS="docker_settings.py"
 
 LABEL org.label-schema.maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.vendor="Puppet" \
@@ -15,19 +17,13 @@ LABEL org.label-schema.maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.schema-version="1.0" \
       org.label-schema.dockerfile="/Dockerfile"
 
-RUN apk add --no-cache --update curl py-pip && \
-    rm -rf /var/cache/apk/*
-
 RUN pip install puppetboard=="$PUPPET_BOARD_VERSION" gunicorn=="$GUNICORN_VERSION"
 
-COPY wsgi.py settings.py /var/www/puppetboard/
-
-EXPOSE 8000
+EXPOSE $PUPPETBOARD_PORT
 
 WORKDIR /var/www/puppetboard
 
-CMD /usr/bin/gunicorn -b 0.0.0.0:8000 --access-logfile=/dev/stdout wsgi:application
-
+CMD gunicorn -b 0.0.0.0:${PUPPETBOARD_PORT} --access-logfile=/dev/stdout puppetboard.app:app
 # Health check
 HEALTHCHECK --interval=10s --timeout=10s --retries=90 CMD \
   curl --fail -X GET localhost:8000\
