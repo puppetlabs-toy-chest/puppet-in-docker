@@ -15,7 +15,7 @@ LABEL org.label-schema.maintainer="Puppet Release Team <release@puppet.com>" \
       org.label-schema.dockerfile="/Dockerfile"
 
 RUN apt-get update && \
-    apt-get install --no-install-recommends -y git && \
+    apt-get install --no-install-recommends -y git openssh-client && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
