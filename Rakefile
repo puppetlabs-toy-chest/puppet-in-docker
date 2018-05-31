@@ -198,7 +198,4 @@ end
 
 task default: %i[
   rubocop
-  build
-  lint
-  spec
 ]
