@@ -1,0 +1,2 @@
+The dockerfiles and automation to build the r10k image has moved to the r10k
+github repo: https://github.com/puppetlabs/r10k/tree/2.5.x/docker

@@ -1,0 +1,2 @@
+The dockerfiles and automation to build the puppetdb and puppetdb-postgres images
+have moved to the PuppetDB github repo: https://github.com/puppetlabs/puppetdb/tree/master/docker
