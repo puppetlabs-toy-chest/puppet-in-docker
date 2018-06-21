@@ -1,0 +1,3 @@
+The dockerfiles and automation to build the puppetserver and
+puppetserver-standalone images have moved to the Puppet Server github repo:
+https://github.com/puppetlabs/puppetserver/tree/master/docker
