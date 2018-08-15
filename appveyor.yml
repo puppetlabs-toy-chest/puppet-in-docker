@@ -1,0 +1,32 @@
+build: off
+image: Visual Studio 2017
+matrix:
+  fast_finish: true
+
+platform:
+  - Ruby24-x64
+
+install:
+ - docker version
+ - docker images
+
+build_script:
+  - ps: |
+      # Switch-DockerLinux
+      # attempt to start stopped services
+      net stop vmms
+      net start vmms
+      docker-switch-linux
+      bundle exec rake
+      Start-Sleep -Seconds 20
+      docker ps
+
+# sudo: false
+
+notifications:
+  - provider: Email
+    to:
+    - nobody@nowhere.com
+    on_build_success: false
+    on_build_failure: false
+    on_build_status_changed: false
