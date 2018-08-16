@@ -14,19 +14,14 @@ install:
 
 build_script:
   - ps: |
-      # Switch-DockerLinux
+      Switch-DockerLinux
       # attempt to start stopped services
-      Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -Verbose
-      Enable-WindowsOptionalFeature -Online -FeatureName Containers -All -Verbose
+      # Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -Verbose
+      # Enable-WindowsOptionalFeature -Online -FeatureName Containers -All -Verbose
       # bcdedit /set hypervisorlaunchtype Auto
-      timeout 15
-      Restart-Computer -Force -Confirm:$false
+      # timeout 15
+      # Restart-Computer -Force -Confirm:$false
       # Set-VMProcessor -VMName <Enter-VM-Name> -ExposeVirtualizationExtensions $true -Verbose
-
-test_script:
-  - ps: |
-      timeout 120
-      docker-switch-linux
       bundle exec rake
       docker ps
 
