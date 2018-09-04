@@ -1,3 +1,8 @@
+**!! NOTE !!** This repository is deprecated! We're still maintaining Puppetserver, PuppetDB, and r10k images, but the build information has moved to the individual project repos at:
+* https://github.com/puppetlabs/puppetserver/tree/5.3.x/docker
+* https://github.com/puppetlabs/puppetdb/tree/5.2.x/docker
+* https://github.com/puppetlabs/r10k/tree/2.6.x/docker
+
 [![Build
 Status](https://travis-ci.org/puppetlabs/puppet-in-docker.svg?branch=master)](https://travis-ci.org/puppetlabs/puppet-in-docker)
 
