@@ -1,0 +1,36 @@
+# based off of the code at
+# https://github.com/appveyor-tests/docker-ce/blob/master/appveyor.yml 
+build: off
+image: Visual Studio 2017
+matrix:
+  fast_finish: true
+
+platform:
+  - Ruby24-x64
+
+install:
+ - docker version
+ - docker images
+
+build_script:
+  - ps: |
+      Switch-DockerLinux
+      # attempt to start stopped services
+      # Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -Verbose
+      # Enable-WindowsOptionalFeature -Online -FeatureName Containers -All -Verbose
+      # bcdedit /set hypervisorlaunchtype Auto
+      # timeout 15
+      # Restart-Computer -Force -Confirm:$false
+      # Set-VMProcessor -VMName <Enter-VM-Name> -ExposeVirtualizationExtensions $true -Verbose
+      bundle exec rake
+      docker ps
+
+# sudo: false
+
+notifications:
+  - provider: Email
+    to:
+    - nobody@nowhere.com
+    on_build_success: false
+    on_build_failure: false
+    on_build_status_changed: false
